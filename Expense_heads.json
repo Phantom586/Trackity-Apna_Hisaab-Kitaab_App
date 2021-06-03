@@ -1,0 +1,28 @@
+{
+  "Expense_Heads" : [
+    ["1", "0", "Expenses"],
+    ["2", "0", "Income"],
+    ["3", "0", "My Pet"],
+    ["4", "1", "Kirana"],
+    ["5", "1", "Milk"],
+    ["6", "1", "Education"],
+    ["7", "1", "Medicine"],
+    ["8", "1", "Garments"],
+    ["9", "1", "Laon Payment"],
+    ["10", "1", "Investment"],
+    ["11", "1", "Electricity/Mobile"],
+    ["12", "1", "Vegetables/Fruits"],
+    ["13", "1", "House Rent"],
+    ["14", "1", "Dish Expense"],
+    ["15", "1", "Others"],
+    ["16", "2", "Salary"],
+    ["17", "2", "Rent"],
+    ["18", "2", "Interest"],
+    ["19", "2", "Commission"],
+    ["20", "2", "Other"],
+    ["21", "3", "Medicine"],
+    ["22", "3", "Nutrition"],
+    ["23", "3", "Accessories"],
+    ["24", "3", "Grooming"]
+  ]
+}
