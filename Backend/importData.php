@@ -12,14 +12,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
     $response;
 
-    if ($res != "FALSE") {
+    if ($res != "FALSE" || $res1 != "FALSE") {
 
         $response = array(
             "response" => array(
                 "responseCode" => "200",
             ),
-            "expenses_list" => $res,
-            "expense_types_list" => $res1,
+            "expenses_list" => ($res != "FALSE") ? $res : [],
+            "expense_types_list" => ($res1 != "FALSE") ? $res1 : [],
         );
 
         echo json_encode($response);
