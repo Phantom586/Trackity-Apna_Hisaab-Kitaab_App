@@ -1,0 +1,46 @@
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="428.408dp"
+    android:height="428.408dp"
+    android:viewportWidth="428.408"
+    android:viewportHeight="428.408">
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M94.041,214.204m-57.469,0a57.469,57.469 0,1 1,114.938 0a57.469,57.469 0,1 1,-114.938 0"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M381.388,172.408H177.633c-5.771,0 -10.449,4.678 -10.449,10.449s4.678,10.449 10.449,10.449h203.755c5.771,0 10.449,-4.678 10.449,-10.449S387.159,172.408 381.388,172.408z"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M177.633,256h109.714c5.771,0 10.449,-4.678 10.449,-10.449s-4.678,-10.449 -10.449,-10.449H177.633c-5.771,0 -10.449,4.678 -10.449,10.449S171.862,256 177.633,256z"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M94.041,57.469m-57.469,0a57.469,57.469 0,1 1,114.938 0a57.469,57.469 0,1 1,-114.938 0"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M177.633,36.571h203.755c5.771,0 10.449,-4.678 10.449,-10.449c0,-5.771 -4.678,-10.449 -10.449,-10.449H177.633c-5.771,0 -10.449,4.678 -10.449,10.449C167.184,31.893 171.862,36.571 177.633,36.571z"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M177.633,99.265h109.714c5.771,0 10.449,-4.678 10.449,-10.449s-4.678,-10.449 -10.449,-10.449H177.633c-5.771,0 -10.449,4.678 -10.449,10.449S171.862,99.265 177.633,99.265z"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M94.041,370.939m-57.469,0a57.469,57.469 0,1 1,114.938 0a57.469,57.469 0,1 1,-114.938 0"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M381.388,329.143H177.633c-5.771,0 -10.449,4.678 -10.449,10.449s4.678,10.449 10.449,10.449h203.755c5.771,0 10.449,-4.678 10.449,-10.449S387.159,329.143 381.388,329.143z"/>
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M287.347,391.837H177.633c-5.771,0 -10.449,4.678 -10.449,10.449s4.678,10.449 10.449,10.449h109.714c5.771,0 10.449,-4.678 10.449,-10.449S293.118,391.837 287.347,391.837z"/>
+</vector>

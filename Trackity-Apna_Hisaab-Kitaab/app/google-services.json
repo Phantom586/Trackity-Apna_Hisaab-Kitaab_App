@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1089281377953",
+    "project_id": "trackity-ahk",
+    "storage_bucket": "trackity-ahk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089281377953:android:d5e06120746d2f864552e0",
+        "android_client_info": {
+          "package_name": "com.freemind_technologies.trackity_apna_hisaab_kitaab_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089281377953-vo7bnfk56gcoitmsnpccg5an7fmlct3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemind_technologies.trackity_apna_hisaab_kitaab_app",
+            "certificate_hash": "4c4f501f1b49520a9c95cfcc296af472e6de25d3"
+          }
+        },
+        {
+          "client_id": "1089281377953-a0uiq3b5vrambnjc5vh0v3kc2oqic30l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo4PQL0P_HmDkFjEW6gns91THdiwU-XIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089281377953-a0uiq3b5vrambnjc5vh0v3kc2oqic30l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

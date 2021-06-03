@@ -1,0 +1,84 @@
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="1000dp"
+    android:height="1000dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="1000">
+  <path
+      android:pathData="M54,72h423v144h-423z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="144"
+          android:startX="54"
+          android:endY="144"
+          android:endX="477"
+          android:type="linear">
+        <item android:offset="0.005586454" android:color="#FF88376B"/>
+        <item android:offset="0.2712" android:color="#FFA05569"/>
+        <item android:offset="0.8459" android:color="#FFDEA064"/>
+        <item android:offset="1" android:color="#FFEFB562"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M54,792h423v144h-423z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="864"
+          android:startX="54"
+          android:endY="864"
+          android:endX="477"
+          android:type="linear">
+        <item android:offset="0.005586454" android:color="#FF88376B"/>
+        <item android:offset="0.2091" android:color="#FF994C6A"/>
+        <item android:offset="0.6254" android:color="#FFC48066"/>
+        <item android:offset="1" android:color="#FFEFB562"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M531,72l0,864l144,0l0,-720l280,-0.96l0,-140.93z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="504"
+          android:startX="531"
+          android:endY="504"
+          android:endX="955"
+          android:type="linear">
+        <item android:offset="0.005586454" android:color="#FF88376B"/>
+        <item android:offset="0.4373" android:color="#FFBA7467"/>
+        <item android:offset="0.8129" android:color="#FFE0A363"/>
+        <item android:offset="1" android:color="#FFEFB562"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M216,432h261v144h-261z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="504"
+          android:startX="216"
+          android:endY="504"
+          android:endX="477"
+          android:type="linear">
+        <item android:offset="0.005586454" android:color="#FF88376B"/>
+        <item android:offset="0.2712" android:color="#FFA05569"/>
+        <item android:offset="0.846" android:color="#FFDEA064"/>
+        <item android:offset="1" android:color="#FFEFB562"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+</vector>

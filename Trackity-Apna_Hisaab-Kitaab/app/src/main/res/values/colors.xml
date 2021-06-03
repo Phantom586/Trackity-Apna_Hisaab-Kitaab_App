@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="danger">#F28A81</color>
+    <color name="activity_bg">#F3EFEF</color>
+
+
+    <color name="pink_200">#698AFF</color>
+    <color name="pink_400">#75C9FE</color>
+
+    <!--    <color name="pink_200">#FF98BC</color>-->
+    <!--    <color name="pink_400">#F35586</color>-->
+    <color name="purple_200">#A2B6FF</color>
+    <color name="purple_400">#7895FF</color>
+    <color name="heading_text_color">#2F48A6</color>
+    <color name="mute_text_color">#ACCCDA</color>
+    <color name="card_bg">#FDF6F6</color>
+    <color name="card_bg1">#FDF6F6</color>
+    <color name="text_color_1">#AEABAB</color>
+    <color name="text_color_2">#1D1D31</color>
+    <color name="text_color_3">#484848</color>
+    <color name="text_color_4">#F8F8F8</color>
+
+    <color name="surfaceColor">#FDF6F6</color>
+    <color name="week_day_text_color">#505050</color>
+    <color name="calendar_anotherMonthsDaysLabelColor">#99949494</color>
+    <color name="calendar_headerColor">#7895FF</color>
+    <color name="calendar_abbreviationsBarColor">#A2B6FF</color>
+    <color name="calendar_abbreviationsLabelsColor">#E5E5E5</color>
+
+    <color name="icon_tint_color">#FFF</color>
+    <color name="light_text_button_bg">#DFDFDF</color>
+
+    <color name="boxStrokeColor">#698AFF</color>
+
+    <color name="nav_selected">#FFF</color>
+    <color name="nav_not_selected">#FFF</color>
+
+    <color name="internet_status_color">#75C9FE</color>
+
+    <color name="all_round_daynight">#FFF</color>
+
+</resources>

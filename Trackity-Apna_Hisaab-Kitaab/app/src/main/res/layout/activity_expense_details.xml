@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.ExpenseDetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/aed_coordinator_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:elevation="5dp" />
+
+        <LinearLayout
+            android:id="@+id/aed_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:onClick="goBack"
+                android:paddingStart="10dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="12dp"
+                android:src="@drawable/icon_back"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/aed_exp_delete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="deleteExpense"
+                android:src="@drawable/ic_delete"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aed_top_view">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/aed_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:boxBackgroundColor="@color/activity_bg"
+                app:boxStrokeColor="@color/activity_bg"
+                app:boxStrokeWidth="0dp"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/purple_400"
+                app:errorTextColor="#3F3D3D"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/aed_et_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_mono_medium"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:maxLength="250"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/text_color_3"
+                    android:textSize="16sp"
+                    tools:text="@tools:sample/full_names" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/aed_amount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:boxCornerRadiusTopEnd="5dp"
+                        android:layout_weight="1"
+                        app:boxCornerRadiusTopStart="5dp"
+                        app:boxStrokeColor="@color/boxStrokeColor"
+                        app:boxBackgroundColor="@color/activity_bg"
+                        app:errorEnabled="true"
+                        app:errorIconTint="@color/purple_400"
+                        app:errorTextColor="#FFF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/aed_et_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fira_mono"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:lines="1"
+                            android:maxEms="10"
+                            android:maxLines="1"
+                            android:minEms="4"
+                            android:singleLine="true"
+                            android:textColor="@color/text_color_3"
+                            android:textSize="16sp"
+                            tools:text="@tools:sample/us_zipcodes" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2">
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="5dp"
+                            app:cardBackgroundColor="@color/card_bg1"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/aed_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fira_mono"
+                                android:padding="10dp"
+                                android:text="04, Jan 21"
+                                android:textColor="@color/text_color_3"/>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="@color/card_bg1"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/aed_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fira_mono"
+                                android:padding="10dp"
+                                android:text="04:30 pm"
+                                android:textColor="@color/text_color_3" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_mono_medium"
+                    android:text="Expense Heads"
+                    android:textColor="@color/week_day_text_color"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#AAA" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/aed_exp_head_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#AAA" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/aed_exp_sub_head_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/aeb_update_expense"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="updateExpense"
+                android:backgroundTint="@color/pink_200"
+                android:fontFamily="@font/fira_mono_bold"
+                android:padding="10dp"
+                android:text="@string/aed_update"
+                android:textAllCaps="false"
+                android:textColor="#FFF"
+                android:textSize="14sp"
+                app:cornerRadius="5dp"
+                app:elevation="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

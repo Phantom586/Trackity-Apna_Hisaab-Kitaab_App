@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.bottomNavFragments.CalendarFragment">
+
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/fc_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="one_day_picker"
+        app:eventsEnabled="true"
+        app:pagesColor="@color/activity_bg"
+        app:headerColor="@color/calendar_headerColor"
+        app:abbreviationsBarColor="@color/calendar_abbreviationsBarColor"
+        app:abbreviationsLabelsColor="@color/calendar_abbreviationsLabelsColor"
+        app:selectionColor="@color/purple_400"
+        app:selectionLabelColor="#FFF"
+        app:daysLabelsColor="@color/week_day_text_color"
+        app:todayLabelColor="@color/pink_200"
+        app:anotherMonthsDaysLabelsColor="@color/calendar_anotherMonthsDaysLabelColor"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fc_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fc_calendar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

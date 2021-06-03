@@ -1,0 +1,47 @@
+<!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Trackity</string>
+
+    <!-- SplashScreen -->
+    <string name="name_app">Trackity</string>
+    <string name="sp_desc">Track and Manage your expenses\n in a very Minimal way.</string>
+    <string name="copyright_desc">© FreeMind Technologies</string>
+
+    <!--  MainActivity -->
+    <string name="hbn_home">Home</string>
+    <string name="hbn_profile">My Profile</string>
+    <string name="hbn_calendar">Calendar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- HomeFragment -->
+    <string name="fh_logout">Logout</string>
+    <string name="fh_header">Let\'s get you started</string>
+    <string name="fh_desc1">click on the</string>
+    <string name="fh_desc_2">+</string>
+    <string name="fh_desc_3">Button.</string>
+    <string name="fh_card_header">Start adding your expenses</string>
+
+    <!-- AddExpense Fragment -->
+    <string name="ae_Rs">(₹)</string>
+    <string name="ae_date_format">(DD, MM YY)</string>
+    <string name="ae_add">Save Expense</string>
+    <string name="ae_expense_type">Expense Type</string>
+
+    <!-- ExpenseDetails -->
+    <string name="aed_update">Update</string>
+    <string name="aed_delete">Delete</string>
+    <string name="met_add_exp_type">Save</string>
+
+</resources>
