@@ -45,6 +45,7 @@ import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.Registe
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.RegisterUser;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.ResponseResult;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.VerifyUserResult;
+import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.BgWorker;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.DBHelper;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.MySharedPreferences;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.Utilities;
@@ -76,6 +77,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,6 +89,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -138,9 +143,9 @@ public class ProfileFragment extends Fragment {
         tv_month_name = view.findViewById(R.id.fp_month_name);
         tv_user_name = view.findViewById(R.id.fh_user_name);
 //        ll_feedback = view.findViewById(R.id.fp_feedback);
-        ll_sync_db = view.findViewById(R.id.fp_sync_db);
+//        ll_sync_db = view.findViewById(R.id.fp_sync_db);
         ll_logout = view.findViewById(R.id.fp_logout);
-        ll_import = view.findViewById(R.id.fp_import);
+//        ll_import = view.findViewById(R.id.fp_import);
         utilities = new Utilities(getContext());
         dbHelper = new DBHelper(getContext());
         monthsList = new ArrayList<>();
@@ -172,8 +177,8 @@ public class ProfileFragment extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             ll_google_signIn.setVisibility(View.GONE);
-            ll_sync_db.setVisibility(View.VISIBLE);
-            ll_import.setVisibility(View.VISIBLE);
+//            ll_sync_db.setVisibility(View.VISIBLE);
+//            ll_import.setVisibility(View.VISIBLE);
             ll_logout.setVisibility(View.VISIBLE);
             setUserDetails(firebaseUser);
         }
@@ -247,15 +252,15 @@ public class ProfileFragment extends Fragment {
 //            }
 //        });
 
-        ll_sync_db.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOnline)
-                    syncUserDataToDB();
-                else
-                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
-            }
-        });
+//        ll_sync_db.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isOnline)
+//                    syncUserDataToDB();
+//                else
+//                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
+//            }
+//        });
 
         ll_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,15 +272,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        ll_import.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOnline)
-                    ImportDataFromServerDB();
-                else
-                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
-            }
-        });
+//        ll_import.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isOnline)
+//                    ImportDataFromServerDB();
+//                else
+//                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
+//            }
+//        });
 
         ll_expense_summary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,8 +395,8 @@ public class ProfileFragment extends Fragment {
 
                                     mySharedPrefs.setLoggedIn(true);
 
-                                    ll_sync_db.setVisibility(View.VISIBLE);
-                                    ll_import.setVisibility(View.VISIBLE);
+//                                    ll_sync_db.setVisibility(View.VISIBLE);
+//                                    ll_import.setVisibility(View.VISIBLE);
                                     ll_logout.setVisibility(View.VISIBLE);
 
                                     ll_google_signIn.setVisibility(View.GONE);
@@ -407,42 +412,74 @@ public class ProfileFragment extends Fragment {
 
     private void checkIfUserAlreadyExistsInDB(FirebaseUser user) {
 
-        RequestBody u_email = RequestBody.create(user.getEmail(), MediaType.parse("text/plain"));
+//        RequestBody u_email = RequestBody.create(user.getEmail(), MediaType.parse("text/plain"));
 
-        Call<VerifyUserResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().verifyUser(u_email);
+        try {
 
-        call.enqueue(new Callback<VerifyUserResult>() {
-            @Override
-            public void onResponse(Call<VerifyUserResult> call, Response<VerifyUserResult> response) {
-                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+            final String res = new BgWorker(getContext()).execute("verifyUser", user.getEmail()).get();
+            Log.d(TAG, "Response : "+res);
 
-                boolean exists = response.body().userExists();
-                final String u_id = response.body().getUser_id();
-                ResponseResult result = response.body().getResponseResult();
+            final JSONObject jsonObject = new JSONObject(res.trim());
 
-                final String responseCode = result.getResponseCode();
+            final JSONObject responseObj = jsonObject.getJSONObject("response");
 
-                if (responseCode.equalsIgnoreCase("200") && exists) {
+            final String responseCode = responseObj.getString("responseCode");
 
-                    Log.d(TAG, "Verification Result :: User_ID -> "+u_id);
-                    mySharedPrefs.setUserID(u_id);
-                    // If User logs out and Adds some new expenses and then logs back in again.
-                    syncUserDataToDB();
-                    ImportDataFromServerDB();
+            final boolean exists = jsonObject.getString("exists").equals("true");
 
-                } else if (responseCode.equalsIgnoreCase("404") && !exists) {
-                    storeUserInDB(user);
-                }
+            if (responseCode.equals("200") && exists) {
 
-            }
+                final String user_id = jsonObject.getString("user_id");
+                Log.d(TAG, "User_ID -> "+user_id);
+                mySharedPrefs.setUserID(user_id);
+               //  If User logs out and Adds some new expenses and then logs back in again.
+                syncUserDataToDB();
+                ImportDataFromServerDB();
 
-            @Override
-            public void onFailure(Call<VerifyUserResult> call, Throwable t) {
+            } else if (responseCode.equals("404") && !exists) {
 
-                Log.d(TAG, "Failed Somehow");
+                storeUserInDB(user);
 
             }
-        });
+
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+        }
+
+//        Call<VerifyUserResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().verifyUser(u_email);
+//
+//        call.enqueue(new Callback<VerifyUserResult>() {
+//            @Override
+//            public void onResponse(Call<VerifyUserResult> call, Response<VerifyUserResult> response) {
+//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+//
+//                boolean exists = response.body().userExists();
+//                final String u_id = response.body().getUser_id();
+//                ResponseResult result = response.body().getResponseResult();
+//
+//                final String responseCode = result.getResponseCode();
+//
+//                if (responseCode.equalsIgnoreCase("200") && exists) {
+//
+//                    Log.d(TAG, "Verification Result :: User_ID -> "+u_id);
+//                    mySharedPrefs.setUserID(u_id);
+//                    // If User logs out and Adds some new expenses and then logs back in again.
+//                    syncUserDataToDB();
+//                    ImportDataFromServerDB();
+//
+//                } else if (responseCode.equalsIgnoreCase("404") && !exists) {
+//                    storeUserInDB(user);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<VerifyUserResult> call, Throwable t) {
+//
+//                Log.d(TAG, "Failed Somehow");
+//
+//            }
+//        });
 
     }
 
@@ -472,40 +509,68 @@ public class ProfileFragment extends Fragment {
         final String user_email = user.getEmail();
         final String user_pass = "";
 
-        RequestBody f_name = RequestBody.create(user_name, MediaType.parse("text/plain"));
-        RequestBody pass = RequestBody.create(user_pass, MediaType.parse("text/plain"));
-        RequestBody u_email = RequestBody.create(user_email, MediaType.parse("text/plain"));
+        try {
 
-        Call<RegisterUser> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().registerUser(f_name, u_email, pass);
+            final String res = new BgWorker(getContext()).execute("registerUser", user_name, user_email, user_pass).get();
+            Log.d(TAG, "Register Result : "+res);
 
-        call.enqueue(new Callback<RegisterUser>() {
-            @Override
-            public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
-                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+            final JSONObject jsonObject = new JSONObject(res.trim());
 
-                RegisterResult registerResult = response.body().getResult();
-                ResponseResult result = response.body().getResponseResult();
+            final JSONObject responseObj = jsonObject.getJSONObject("response");
 
-                final String responseCode = result.getResponseCode();
+            final String responseCode = responseObj.getString("responseCode");
 
-                if (responseCode.equalsIgnoreCase("200")) {
+            if (responseCode.equals("200")) {
 
-                    Log.d(TAG, "Register Result :: User_ID -> "+registerResult.getUser_id());
-                    mySharedPrefs.setUserID(registerResult.getUser_id());
+                final JSONObject jsonObject1 = jsonObject.getJSONObject("result");
 
-                    syncUserDataToDB();
+                final String user_id = jsonObject1.getString("User_ID");
+                Log.d(TAG, "User_ID -> "+user_id);
 
-                }
+                mySharedPrefs.setUserID(user_id);
+
+                syncUserDataToDB();
 
             }
 
-            @Override
-            public void onFailure(Call<RegisterUser> call, Throwable t) {
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+        }
 
-                Log.d(TAG, "Failed Somehow");
-
-            }
-        });
+//        RequestBody f_name = RequestBody.create(user_name, MediaType.parse("text/plain"));
+//        RequestBody pass = RequestBody.create(user_pass, MediaType.parse("text/plain"));
+//        RequestBody u_email = RequestBody.create(user_email, MediaType.parse("text/plain"));
+//
+//        Call<RegisterUser> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().registerUser(f_name, u_email, pass);
+//
+//        call.enqueue(new Callback<RegisterUser>() {
+//            @Override
+//            public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
+//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+//
+//                RegisterResult registerResult = response.body().getResult();
+//                ResponseResult result = response.body().getResponseResult();
+//
+//                final String responseCode = result.getResponseCode();
+//
+//                if (responseCode.equalsIgnoreCase("200")) {
+//
+//                    Log.d(TAG, "Register Result :: User_ID -> "+registerResult.getUser_id());
+//                    mySharedPrefs.setUserID(registerResult.getUser_id());
+//
+//                    syncUserDataToDB();
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RegisterUser> call, Throwable t) {
+//
+//                Log.d(TAG, "Failed Somehow");
+//
+//            }
+//        });
 
     }
 
@@ -641,76 +706,157 @@ public class ProfileFragment extends Fragment {
 
         importProgressDialog.show();
         final String u_id = mySharedPrefs.getUserID();
-        RequestBody user_id = RequestBody.create(u_id, MediaType.parse("text/plain"));
+//        RequestBody user_id = RequestBody.create(u_id, MediaType.parse("text/plain"));
 
-        Call<ImportDataResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().importData(user_id);
-        call.enqueue(new Callback<ImportDataResult>() {
-            @Override
-            public void onResponse(Call<ImportDataResult> call, Response<ImportDataResult> response) {
-                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+        try {
 
-                List<List<String>> expensesList = response.body().getExpenses_list();
-                List<List<String>> expensesTypesList = response.body().getExpense_Types_list();
-                ResponseResult result = response.body().getResponseResult();
+            final String res = new BgWorker(getContext()).execute("ImportDataFromServerDB", u_id).get();
+            Log.d(TAG, "ImportDataFromServerDB Response : "+res);
 
-                final String responseCode = result.getResponseCode();
+            final JSONObject jObj = new JSONObject(res.trim());
 
-                if (responseCode.equalsIgnoreCase("200")) {
+            final JSONObject responseObj = jObj.getJSONObject("response");
 
-                    if (expensesList.size() > 0) {
+            final String responseCode = responseObj.getString("responseCode");
 
-                        if (dbHelper.ExpenseTableHasData()) {
-                            dbHelper.deleteAllRows__ExpenseTable();
-                        }
+            if (responseCode.equals("200")) {
 
-                        ListIterator<List<String>> iter = expensesList.listIterator();
+                final JSONArray expListJsonArray = jObj.getJSONArray("expenses_list");
 
-                        while(iter.hasNext()) {
-                            final List<String> expense = iter.next();
-                            dbHelper.storeExpense(expense, true);
-                        }
+                if (expListJsonArray.length() > 0) {
 
-                    } else {
-                        Log.d(TAG, "Expenses List is Empty");
+                    if (dbHelper.ExpenseTableHasData()) {
+                        dbHelper.deleteAllRows__ExpenseTable();
                     }
 
-                    if (expensesTypesList.size() > 0) {
+                    for (int index = 0; index < expListJsonArray.length(); index ++) {
 
-                        dbHelper.deleteAllRows__ExpenseTypesTable();
+                        final JSONArray expJsonArray = expListJsonArray.getJSONArray(index);
 
-                        ListIterator<List<String>> iter1 = expensesTypesList.listIterator();
+                        final List<String> expense = new ArrayList<>();
+                        expense.add(expJsonArray.getString(0));
+                        expense.add(expJsonArray.getString(1));
+                        expense.add(expJsonArray.getString(2));
+                        expense.add(expJsonArray.getString(3));
+                        expense.add(expJsonArray.getString(4));
+                        expense.add(expJsonArray.getString(5));
+                        expense.add(expJsonArray.getString(6));
 
-                        while(iter1.hasNext()) {
-                            final List<String> expenseType = iter1.next();
-                            dbHelper.storeExpenseTypes(expenseType.get(0), expenseType.get(1), expenseType.get(2), true);
-                        }
+                        dbHelper.storeExpense(expense, true);
 
-                    } else {
-
-                        Log.d(TAG, "ExpensesTypes List is Empty");
                     }
 
-                    importProgressDialog.hide();
-                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Imported Successfully!", R.color.internet_status_color);
-
-                    initLineChart();
-                    calculateMonthlyExpense();
-                    calculateWeeklyExpenseData();
-
-                } else if (responseCode.equalsIgnoreCase("404")) {
-                    importProgressDialog.hide();
-                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "No Data uploaded yet from this Account!", R.color.internet_status_color);
                 }
 
-            }
+                final JSONArray expTypeListJsonArray = jObj.getJSONArray("expense_types_list");
 
-            @Override
-            public void onFailure(Call<ImportDataResult> call, Throwable t) {
+                if (expTypeListJsonArray.length() > 0) {
+
+                    dbHelper.deleteAllRows__ExpenseTypesTable();
+
+                    for (int index = 0; index < expTypeListJsonArray.length(); index ++) {
+
+                        final JSONArray expTypeJsonArray = expTypeListJsonArray.getJSONArray(index);
+
+                        final List<String> expenseType = new ArrayList<>();
+                        expenseType.add(expTypeJsonArray.getString(0));
+                        expenseType.add(expTypeJsonArray.getString(1));
+                        expenseType.add(expTypeJsonArray.getString(2));
+
+                        dbHelper.storeExpenseTypes(expenseType.get(0), expenseType.get(1), expenseType.get(2), true);
+
+                    }
+
+                }
 
                 importProgressDialog.hide();
-                Log.d(TAG, "Failed Somehow");
+                utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Imported Successfully!", R.color.internet_status_color);
+
+                initLineChart();
+                calculateMonthlyExpense();
+                calculateWeeklyExpenseData();
+
+            } else if (responseCode.equals("404")) {
+
+                importProgressDialog.hide();
+                utilities.showBottomSnackBar(getContext(), coordinatorLayout, "No Data uploaded yet from this Account!", R.color.internet_status_color);
+
             }
-        });
+
+            importProgressDialog.hide();
+
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+        }
+
+//        Call<ImportDataResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().importData(user_id);
+//        call.enqueue(new Callback<ImportDataResult>() {
+//            @Override
+//            public void onResponse(Call<ImportDataResult> call, Response<ImportDataResult> response) {
+//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
+//
+//                List<List<String>> expensesList = response.body().getExpenses_list();
+//                List<List<String>> expensesTypesList = response.body().getExpense_Types_list();
+//                ResponseResult result = response.body().getResponseResult();
+//
+//                final String responseCode = result.getResponseCode();
+//
+//                if (responseCode.equalsIgnoreCase("200")) {
+//
+//                    if (expensesList.size() > 0) {
+//
+//                        if (dbHelper.ExpenseTableHasData()) {
+//                            dbHelper.deleteAllRows__ExpenseTable();
+//                        }
+//
+//                        ListIterator<List<String>> iter = expensesList.listIterator();
+//
+//                        while(iter.hasNext()) {
+//                            final List<String> expense = iter.next();
+//                            dbHelper.storeExpense(expense, true);
+//                        }
+//
+//                    } else {
+//                        Log.d(TAG, "Expenses List is Empty");
+//                    }
+//
+//                    if (expensesTypesList.size() > 0) {
+//
+//                        dbHelper.deleteAllRows__ExpenseTypesTable();
+//
+//                        ListIterator<List<String>> iter1 = expensesTypesList.listIterator();
+//
+//                        while(iter1.hasNext()) {
+//                            final List<String> expenseType = iter1.next();
+//                            dbHelper.storeExpenseTypes(expenseType.get(0), expenseType.get(1), expenseType.get(2), true);
+//                        }
+//
+//                    } else {
+//
+//                        Log.d(TAG, "ExpensesTypes List is Empty");
+//                    }
+//
+//                    importProgressDialog.hide();
+//                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Imported Successfully!", R.color.internet_status_color);
+//
+//                    initLineChart();
+//                    calculateMonthlyExpense();
+//                    calculateWeeklyExpenseData();
+//
+//                } else if (responseCode.equalsIgnoreCase("404")) {
+//                    importProgressDialog.hide();
+//                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "No Data uploaded yet from this Account!", R.color.internet_status_color);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ImportDataResult> call, Throwable t) {
+//
+//                importProgressDialog.hide();
+//                Log.d(TAG, "Failed Somehow");
+//            }
+//        });
 
     }
 
@@ -747,8 +893,8 @@ public class ProfileFragment extends Fragment {
                                         ll_google_signIn.setVisibility(View.VISIBLE);
                                         tv_user_name.setText("Welcome");
                                         im_profile_pic.setImageResource(R.drawable.ic_profile_selected);
-                                        ll_sync_db.setVisibility(View.GONE);
-                                        ll_import.setVisibility(View.GONE);
+//                                        ll_sync_db.setVisibility(View.GONE);
+//                                        ll_import.setVisibility(View.GONE);
                                         ll_logout.setVisibility(View.GONE);
 
                                     }

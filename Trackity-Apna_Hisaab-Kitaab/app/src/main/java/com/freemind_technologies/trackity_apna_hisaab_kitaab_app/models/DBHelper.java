@@ -429,7 +429,14 @@ public class DBHelper extends SQLiteOpenHelper {
                     jsonObject.put(exp_col_0, res.getString(0));
                     jsonObject.put(exp_col_1, res.getString(1));
                     jsonObject.put(exp_col_2, res.getString(2));
-                    jsonObject.put(exp_col_3, res.getString(3));
+
+                    String desc = res.getString(3);
+                    // Checking if the Description contains an apostrophe character.
+                    if (desc.contains("'")) {
+                        desc = desc.replace("'", "''");
+                    }
+
+                    jsonObject.put(exp_col_3, desc);
                     jsonObject.put(exp_col_4, res.getString(4));
                     jsonObject.put(exp_col_5, res.getString(5));
                     jsonObject.put(exp_col_6, res.getString(6));
@@ -454,7 +461,14 @@ public class DBHelper extends SQLiteOpenHelper {
                     jsonObject.put(exp_col_0, res.getString(0));
                     jsonObject.put(exp_col_1, res.getString(1));
                     jsonObject.put(exp_col_2, res.getString(2));
-                    jsonObject.put(exp_col_3, res.getString(3));
+
+                    String desc = res.getString(3);
+                    // Checking if the Description contains an apostrophe character.
+                    if (desc.contains("'")) {
+                        desc = desc.replace("'", "''");
+                    }
+
+                    jsonObject.put(exp_col_3, desc);
                     jsonObject.put(exp_col_4, res.getString(4));
                     jsonObject.put(exp_col_5, res.getString(5));
                     jsonObject.put(exp_col_6, res.getString(6));
