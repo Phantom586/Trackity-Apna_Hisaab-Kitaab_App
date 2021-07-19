@@ -45,7 +45,7 @@
             android:fontFamily="@font/fira_mono_bold"
             android:textColor="@color/heading_text_color"
             android:textSize="20sp"
-            android:text="Expense"/>
+            android:text="@string/pf_expense"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:fontFamily="@font/fira_mono_medium"
             android:textColor="@color/text_color_3"
             android:textSize="20sp"
-            android:text="Summary"/>
+            android:text="@string/es_summary"/>
 
     </LinearLayout>
 
@@ -78,7 +78,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="1dp"
             android:fontFamily="@font/lato"
-            android:text="Choose an Expense Head"
+            android:text="@string/es_choose_exp_head"
             android:textColor="@color/text_color_3"
             android:textSize="16sp" />
 
@@ -121,7 +121,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="1dp"
             android:fontFamily="@font/lato"
-            android:text="Expense Sub-Head"
+            android:text="@string/es_exp_subHead"
             android:textColor="@color/text_color_3"
             android:textSize="16sp" />
 
@@ -136,7 +136,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="1dp"
             android:fontFamily="@font/lato"
-            android:text="Total Expense"
+            android:text="@string/es_tot_exp"
             android:textColor="@color/text_color_3"
             android:textSize="16sp" />
 

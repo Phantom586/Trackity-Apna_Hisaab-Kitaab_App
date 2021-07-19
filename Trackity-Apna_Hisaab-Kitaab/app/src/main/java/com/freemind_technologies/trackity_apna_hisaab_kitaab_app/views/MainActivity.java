@@ -60,7 +60,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnectivityChanged(int connectionType, boolean isConnected, boolean isFast){
 
-                utilities.showInternetConnectionStatus__SnackBar(getApplicationContext(), coordinatorLayout, isConnected);
+                String msg;
+                if (isConnected)
+                    msg = getResources().getString(R.string.util_internet_connected);
+                else
+                    msg = getResources().getString(R.string.util_internet_not_connected);
+
+                utilities.showInternetConnectionStatus__SnackBar(getApplicationContext(), coordinatorLayout, msg);
 
                 isOnline = isConnected;
 

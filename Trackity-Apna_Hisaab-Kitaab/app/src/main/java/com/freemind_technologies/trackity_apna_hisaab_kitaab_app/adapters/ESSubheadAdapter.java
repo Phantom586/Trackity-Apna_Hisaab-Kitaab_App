@@ -81,7 +81,7 @@ public class ESSubheadAdapter extends RecyclerView.Adapter<ESSubheadAdapter.View
                     in.putExtra("dateRange", dateRange);
                     v.getContext().startActivity(in);
                 } else {
-                    utilities.showTopSnackBar(v.getContext(),coordinatorLayout, "There are No Expenses in this Sub-Head!", R.color.internet_status_color);
+                    utilities.showTopSnackBar(v.getContext(),coordinatorLayout, context.getResources().getString(R.string.es_no_exp), R.color.internet_status_color);
                 }
 
             }

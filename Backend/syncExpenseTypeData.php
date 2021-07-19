@@ -5,6 +5,7 @@ include "db_functions.php";
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 
     $json_data = $_POST["data"];
+    $lang_change = $_POST["lang_change"];
 
     $data = json_decode($json_data);
 
@@ -15,6 +16,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     $user_id = $data->User_ID;
     $store_data = $data->store;
     $delete_data = $data->delete;
+
+    if ($lang_change == "true")
+        delete_ExpType_Data($user_id);
 
     // For Delete Data.
     for ($i = 0; $i < count($delete_data); $i++) {

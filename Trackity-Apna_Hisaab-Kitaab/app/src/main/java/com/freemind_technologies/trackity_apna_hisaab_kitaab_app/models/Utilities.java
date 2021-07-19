@@ -15,6 +15,7 @@ package com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -131,13 +132,7 @@ public class Utilities {
 
     }
 
-    public void showInternetConnectionStatus__SnackBar(Context context, CoordinatorLayout coordinatorLayout, boolean isConnected) {
-
-        String msg;
-        if (isConnected)
-            msg = "Internet is Connected";
-        else
-            msg = "No Internet Connection!";
+    public void showInternetConnectionStatus__SnackBar(Context context, CoordinatorLayout coordinatorLayout, String msg) {
 
         Snackbar snackbar = Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_SHORT);
         View snackBarView = snackbar.getView();
@@ -254,7 +249,7 @@ public class Utilities {
 
     }
 
-    public void syncExpenseTypeData(String TAG, CustomSyncProgressDialog progressDialog, boolean store, boolean delete, boolean fullDump, boolean silentMode) {
+    public void syncExpenseTypeData(String TAG, CustomSyncProgressDialog progressDialog, boolean store, boolean delete, boolean fullDump, String lang_change, boolean silentMode) {
 
         dbHelper = new DBHelper(this.context);
 
@@ -265,7 +260,7 @@ public class Utilities {
 
             try {
 
-                final String res = new BgWorker(this.context).execute("syncExpenseTypeData", sqliteDump).get();
+                final String res = new BgWorker(this.context).execute("syncExpenseTypeData", sqliteDump, lang_change).get();
                 Log.d(TAG, "syncExpenseTypeData Response : "+res);
 
                 final JSONObject jObj = new JSONObject(res.trim());
@@ -342,10 +337,22 @@ public class Utilities {
 
         syncExpenseTableData(TAG, syncProgressDialog, false, false, false, true, false);
 
-        syncExpenseTypeData(TAG, syncProgressDialog, false, false, true, false);
+        syncExpenseTypeData(TAG, syncProgressDialog, false, false, true, "false", false);
         syncProgressDialog.hide();
 
-        showBottomSnackBar(context, coordinatorLayout, "Data Synced Successfully!", R.color.internet_status_color);
+        showBottomSnackBar(context, coordinatorLayout, context.getResources().getString(R.string.util_data_sync_successful),
+                R.color.internet_status_color);
+
+    }
+
+    public void updateLocale(Context ctx, String lang) {
+
+        Locale myLocale = new Locale(lang);//Set Selected Locale
+        Locale.setDefault(myLocale);//set new locale as default
+        Resources resources = ctx.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(myLocale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
 
     }
 

@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fira_mono_bold"
-                android:text="Expenses"
+                android:text="@string/fh_main_header"
                 android:textColor="@color/heading_text_color"
                 android:textSize="30sp" />
 
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_medium"
-                    android:text="₹"
+                    android:text="@string/fh_rupees_symbol"
                     android:textColor="@color/heading_text_color"
                     android:textSize="14sp" />
 
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_bold"
-                    android:text="5600"
+                    android:text="@string/fh_demo_amt"
                     android:textColor="@color/heading_text_color"
                     android:textSize="16sp" />
 
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/fira_mono_medium"
-                android:text="Click here to add a Expense!"
+                android:text="@string/fh_card_header0"
                 android:textColor="@color/week_day_text_color"
                 android:textSize="13sp" />
 

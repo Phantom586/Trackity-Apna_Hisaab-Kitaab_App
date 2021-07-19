@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 FreeMind Technologies. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <string name="app_name">ट्रैकिटी</string>
+    <string name="app_motto">अपना हिसाब किताब</string>
+
+    <!-- SplashScreen -->
+    <string name="name_app">ट्रैकिटी</string>
+    <string name="sp_desc">अपने खर्चों को ट्रैक और प्रबंधित करें\n बहुत ही आसान तरीके से</string>
+    <string name="copyright_desc">© फ्रीमाइंड टेक्नोलॉजीज</string>
+
+    <!--  MainActivity -->
+    <string name="hbn_home">मुख्य क्षेत्र</string>
+    <string name="hbn_profile">मेरी प्रोफाइल</string>
+    <string name="hbn_calendar">पंचांग</string>
+    <string name="hello_blank_fragment">नमस्ते खाली टुकड़ा</string>
+
+    <!-- HomeFragment -->
+    <string name="fh_logout">लॉग आउट</string>
+    <string name="fh_header">चलिए शुरू करते हैं</string>
+    <string name="fh_desc1">पर क्लिक करें</string>
+    <string name="fh_desc_2">+</string>
+    <string name="fh_desc_3">बटन</string>
+    <string name="fh_card_header">अपने खर्चों को नोट करना शुरू करें</string>
+    <string name="fh_main_header">व्यय</string>
+    <string name="fh_demo_amt">5600</string>
+    <string name="fh_rupees_symbol">₹</string>
+    <string name="fh_card_header0">व्यय दर्ज करने के लिए यहां क्लिक करें!</string>
+    <string name="fh_all">सब</string>
+
+    <!-- AddExpense Fragment -->
+    <string name="ae_Rs">(₹)</string>
+    <string name="ae_date_format">(DD, MM YY)</string>
+    <string name="ae_add">दर्ज करें</string>
+    <string name="ae_expense_type">व्यय प्रकार</string>
+
+    <!-- ExpenseDetails -->
+    <string name="aed_update">अपडेट करें</string>
+    <string name="aed_delete">हटाएं</string>
+    <string name="met_add_exp_type">दर्ज करें</string>
+    <string name="aed_exp_updated">खर्च अपडेट किया गया!</string>
+
+    <!-- AddExpenseBottomSheet -->
+    <string name="aeb_add">व्यय</string>
+    <string name="aeb_expense">दर्ज करें</string>
+    <string name="aeb_desc_hint">व्यय विवरण</string>
+    <string name="aeb_amt">रकम</string>
+    <string name="aeb_demo_date">04, Jan 21</string>
+    <string name="aeb_demo_time">04:30 pm</string>
+    <string name="aeb_exp_head">व्यय शीर्ष</string>
+    <string name="aeb_subhead_hint">(इसके उप-शीर्षों को देखने के लिए एक व्यय शीर्ष का चयन करें)</string>
+    <string name="aeb_floating_label_txt">व्यय उप-शीर्ष चुनें</string>
+
+    <!-- expense_item_v2 -->
+    <string name="expV2_demo_desc">कुछ रैंडम विवरण जैसे, केवल व्यय कार्ड आइटम के लेआउट की कोशिश करना</string>
+    <string name="expV2_demo_amt">$12500</string>
+    <string name="expV2_demo_cat">बिजली/मोबाइल</string>
+    <string name="expV2_emo_date_range">01 - 31</string>
+    <string name="exp_type_demo_cat">कुछ परीक्षण</string>
+
+    <!-- LocalizationActivity -->
+    <string name="localize_header">अपनी भाषा का चयन करें</string>
+    <string name="localize_en">अंग्रेज़ी</string>
+    <string name="localize_hi">हिंदी</string>
+    <string name="localize_btn_text">आगे बढ़ें</string>
+    <string name="localize_disp_text">आपका स्वागत है</string>
+    <string name="localize_alt_disp_txt">भाषा बदल गई है</string>
+
+    <!-- ProfileFragment -->
+    <string name="pf_change_localization">भाषा बदलें</string>
+    <string name="pf_new">नया</string>
+    <string name="pf_exp_summary">व्यय सारांश</string>
+    <string name="pf_mg_exp_type">व्यय प्रकार प्रबंधित करें</string>
+    <string name="pf_overview">अवलोकन</string>
+    <string name="pf_demo_month_name">जनवरी</string>
+    <string name="pf_head_month_name">जनवरी का</string>
+    <string name="pf_google_signIn">Google के साथ साइन इन करें</string>
+    <string name="pf_welcome"> आपका स्वागत है</string>
+    <string name="pf_hi">नमस्ते, </string>
+    <string name="pf_expense">व्यय</string>
+    <string name="pf_jan">जनवरी</string>
+    <string name="pf_feb">फ़रवरी</string>
+    <string name="pf_mar">मार्च</string>
+    <string name="pf_apr">अप्रैल</string>
+    <string name="pf_may">मई</string>
+    <string name="pf_jun">जून</string>
+    <string name="pf_jul">जुलाई</string>
+    <string name="pf_aug">अगस्त</string>
+    <string name="pf_sep">सितंबर</string>
+    <string name="pf_oct">अक्टूबर</string>
+    <string name="pf_nov">नवंबर</string>
+    <string name="pf_dec">दिसंबर</string>
+    <string name="pf_logout_adb_header">लॉगआउट करें</string>
+    <string name="pf_logout_adb_desc">क्या आप लॉग आउट करना चाहते हैं!</string>
+
+    <!-- ExpenseSummary -->
+    <string name="es_summary">सारांश</string>
+    <string name="es_choose_exp_head">एक व्यय शीर्ष चुनें</string>
+    <string name="es_exp_subHead">व्यय उप-शीर्ष</string>
+    <string name="es_tot_exp">कुल खर्च</string>
+    <string name="esbs_choose_date_range">दिनांक सीमा चुनें</string>
+    <string name="esbs_search">खोजें</string>
+    <string name="es_no_exp">इस उप-शीर्ष में कोई खर्च नहीं है!</string>
+
+    <!-- ManageExpenseTypes -->
+    <string name="met_header">व्यय प्रकार</string>
+    <string name="met_post_header">प्रबंधित करें</string>
+    <string name="met_exp_head">व्यय शीर्ष</string>
+    <string name="met_subHead_help_text">(उप-शीर्षों को प्रदर्शित करने के लिए शीर्षों पर क्लिक करें)</string>
+    <string name="met_del_header">व्यय शीर्षलेख हटाएं</string>
+    <string name="met_del_desc">क्या आप वाकई इस व्यय शीर्षलेख को हटाना चाहते हैं!</string>
+    <string name="met_adb_save">दर्ज करें</string>
+    <string name="met_del_sub_header">व्यय उप-शीर्षक हटाएं</string>
+    <string name="met_del_sub_desc">क्या आप वाकई इस खर्चे के उप-शीर्षक को हटाना चाहते हैं!</string>
+    <string name="met_create_exp_head">व्यय शीर्षलेख बनाएं</string>
+    <string name="met_create_exp_sub_head">व्यय उप-शीर्षक बनाएं</string>
+
+    <!-- SubHeaderExpenses -->
+    <string name="she_demo_head">बिजली/मोबाइल</string>
+    <string name="she_exp">व्यय</string>
+
+    <string name="db_sync_header">डेटा क्लाउड से समन्वयित हो रहा है! ...</string>
+    <string name="idl_header">डेटा आयात हो रहा है! ...</string>
+    <string name="ea_del_header">व्यय हटाएं</string>
+    <string name="ea_del_desc">क्या आप वाकई इस खर्च को हटाना चाहते हैं!</string>
+    <string name="ea_positive_btn_text">हाँ</string>
+    <string name="ea_negative_btn_text">रद्द करें</string>
+    <string name="util_internet_connected">आप इंटरनेट से जुड़े हैं</string>
+    <string name="util_internet_not_connected">कोई इंटरनेट कनेक्शन नहीं!</string>
+    <string name="util_data_sync_successful">डेटा सफलतापूर्वक समन्वयित किया गया!</string>
+    <string name="util_no_data_uploaded_yet">इस खाते से अभी तक कोई डेटा अपलोड नहीं किया गया है!</string>
+
+    <!-- UpdateAppActivity -->
+    <string name="ua_update">अपडेट करें</string>
+    <string name="ua_header">अपडेट उपलब्ध है</string>
+    <string name="ua_demo_v1">(v1.3.1</string>
+    <string name="ua_demo_v2"> >> </string>
+    <string name="ua_demo_v3">v1.3.2)</string>
+    <string name="ua_desc">इस ऐप के लिए प्लेस्टोर पर एक नया अपडेट उपलब्ध है, कृपया उन सुविधाओं से लाभ उठाने के लिए ऐप को अपडेट करें और ऐप का उपयोग जारी रखें।</string>
+
+</resources>

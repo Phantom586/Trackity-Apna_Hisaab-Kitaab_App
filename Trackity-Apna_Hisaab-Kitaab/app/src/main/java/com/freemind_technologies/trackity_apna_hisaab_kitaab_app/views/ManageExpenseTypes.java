@@ -105,7 +105,7 @@ public class ManageExpenseTypes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customExpenseHeadView = LayoutInflater.from(v.getContext()).inflate(R.layout.custom_add_exp_type_dialog, null, false);
-                launchAddExpHeadDialog("Create Expense Header", "Head");
+                launchAddExpHeadDialog(v.getContext().getResources().getString(R.string.met_create_exp_head), "Head");
             }
         });
 
@@ -113,7 +113,7 @@ public class ManageExpenseTypes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customExpenseHeadView = LayoutInflater.from(v.getContext()).inflate(R.layout.custom_add_exp_type_dialog, null, false);
-                launchAddExpHeadDialog("Create Expense Sub-Header", "Sub-Head");
+                launchAddExpHeadDialog(v.getContext().getResources().getString(R.string.met_create_exp_sub_head), "Sub-Head");
             }
         });
 
@@ -137,27 +137,27 @@ public class ManageExpenseTypes extends AppCompatActivity {
             public void onExpenseDelete(int position, String id) {
 
                 new MaterialAlertDialogBuilder(ManageExpenseTypes.this)
-                        .setTitle("Delete Expense")
-                        .setMessage("Are you sure you want to delete this expense header!")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getResources().getString(R.string.met_del_sub_header))
+                        .setMessage(getResources().getString(R.string.met_del_sub_desc))
+                        .setPositiveButton(getResources().getString(R.string.ea_positive_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                                 exp_sh_list.remove(position);
                                 manageExpSubHeadAdapter.notifyItemRemoved(position);
-                                dbHelper.deleteExpenseType__byID(id);
+                                dbHelper.deleteExpenseType__byID(id, false);
                                 dbHelper.storeDeletedItem(id, "Expense_Types");
 
                                 final boolean isLoggedIn = mySharedPreferences.isLoggedIn();
                                 if (isOnline && isLoggedIn)
-                                    utilities.syncExpenseTypeData(TAG, null, false, true, false, true);
+                                    utilities.syncExpenseTypeData(TAG, null, false, true, false, "false", true);
 
                                 exp_sub_heads_list.clear();
                                 fetchExpenseSubHeads();
 
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -178,7 +178,7 @@ public class ManageExpenseTypes extends AppCompatActivity {
 
         materialAlertDialogBuilder.setView(customExpenseHeadView)
                 .setTitle(title)
-                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.met_adb_save), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -217,13 +217,13 @@ public class ManageExpenseTypes extends AppCompatActivity {
                             }
                             final boolean isLoggedIn = mySharedPreferences.isLoggedIn();
                             if (isOnline && isLoggedIn)
-                                utilities.syncExpenseTypeData(TAG, null, true, false, false, true);
+                                utilities.syncExpenseTypeData(TAG, null, true, false, false, "false", true);
                         }
 
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -320,25 +320,29 @@ public class ManageExpenseTypes extends AppCompatActivity {
             public void onExpenseDelete(int position, String id) {
 
                 new MaterialAlertDialogBuilder(ManageExpenseTypes.this)
-                        .setTitle("Delete Expense")
-                        .setMessage("Are you sure you want to delete this expense header!")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getResources().getString(R.string.met_del_header))
+                        .setMessage(getResources().getString(R.string.met_del_desc))
+                        .setPositiveButton(getResources().getString(R.string.ea_positive_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
                                 exp_heads_list.remove(position);
-                                dbHelper.deleteExpenseType__byID(id);
+                                dbHelper.deleteExpenseType__byID(id, true);
                                 dbHelper.storeDeletedItem(id, "Expense_Types");
 
                                 final boolean isLoggedIn = mySharedPreferences.isLoggedIn();
                                 if (isOnline && isLoggedIn)
-                                    utilities.syncExpenseTypeData(TAG, null, false, true, false, true);
+                                    utilities.syncExpenseTypeData(TAG, null, false, true, false, "false", true);
 
                                 manageExpHeadAdapter.notifyItemRemoved(position);
 
+                                // clearing the sub_head_list of the deleted head.
+                                exp_sh_list.clear();
+                                manageExpSubHeadAdapter.notifyDataSetChanged();
+
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 

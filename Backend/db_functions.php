@@ -156,4 +156,38 @@
 
     }
 
+        
+    function delete_ExpType_Data($user_id) {
+
+        require 'Connect.php';
+
+        $q = "DELETE FROM Expense_Type WHERE User_ID='$user_id'";
+        
+        if ($conn->query($q) ===  TRUE){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
+    }
+
+    function fetch_latest_app_version($u_key) {
+
+        require 'Connect.php';
+    
+        $q = "SELECT * FROM Utilities WHERE U_Key='$u_key'";
+    
+        $result = $conn->query($q);
+    
+        if( $result->num_rows > 0){
+            if ( $row = $result->fetch_array() ) {
+                return $row;
+            }
+        } else {
+            return "FALSE";
+        }
+    
+    }
+
+
 ?>

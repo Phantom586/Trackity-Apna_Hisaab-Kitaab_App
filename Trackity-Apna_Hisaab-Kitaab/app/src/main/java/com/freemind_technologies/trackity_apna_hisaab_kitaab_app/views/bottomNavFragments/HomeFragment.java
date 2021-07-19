@@ -38,6 +38,7 @@ import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.Expense
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.Week;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.DBHelper;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.MySharedPreferences;
+import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.SharedPrefsConstants;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.Utilities;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.AddExpenseBottomSheet;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.ManageExpenseTypes;
@@ -260,7 +261,7 @@ public class HomeFragment extends Fragment {
                     "    [\"6\", \"1\", \"Education\"],\n" +
                     "    [\"7\", \"1\", \"Medicine\"],\n" +
                     "    [\"8\", \"1\", \"Garments\"],\n" +
-                    "    [\"9\", \"1\", \"Laon Payment\"],\n" +
+                    "    [\"9\", \"1\", \"Loan Payment\"],\n" +
                     "    [\"10\", \"1\", \"Investment\"],\n" +
                     "    [\"11\", \"1\", \"Electricity/Mobile\"],\n" +
                     "    [\"12\", \"1\", \"Vegetables/Fruits\"],\n" +
@@ -278,8 +279,46 @@ public class HomeFragment extends Fragment {
                     "    [\"24\", \"3\", \"Grooming\"]\n" +
                     "  ]\n" +
                     "}";
+
+            final String expTypeList_Hi = "{\n" +
+                    "  \"Expense_Heads\" : [\n" +
+                    "    [\"1\", \"0\", \"व्यय\"],\n" +
+                    "    [\"2\", \"0\", \"आय\"],\n" +
+                    "    [\"3\", \"0\", \"मेरा पालतू\"],\n" +
+                    "    [\"4\", \"1\", \"किराना\"],\n" +
+                    "    [\"5\", \"1\", \"दूध\"],\n" +
+                    "    [\"6\", \"1\", \"शिक्षा\"],\n" +
+                    "    [\"7\", \"1\", \"दवा\"],\n" +
+                    "    [\"8\", \"1\", \"गारमेंट्स\"],\n" +
+                    "    [\"9\", \"1\", \"कर्ज़ भुगतान\"],\n" +
+                    "    [\"10\", \"1\", \"निवेश\"],\n" +
+                    "    [\"11\", \"1\", \"बिजली/मोबाइल\"],\n" +
+                    "    [\"12\", \"1\", \"सब्जियां/फल\"],\n" +
+                    "    [\"13\", \"1\", \"मकान किराया\"],\n" +
+                    "    [\"14\", \"1\", \"डिश व्यय\"],\n" +
+                    "    [\"15\", \"1\", \"अन्य\"],\n" +
+                    "    [\"16\", \"2\", \"वेतन\"],\n" +
+                    "    [\"17\", \"2\", \"किराया\"],\n" +
+                    "    [\"18\", \"2\", \"ब्याज\"],\n" +
+                    "    [\"19\", \"2\", \"आयोग\"],\n" +
+                    "    [\"20\", \"2\", \"अन्य\"],\n" +
+                    "    [\"21\", \"3\", \"दवा\"],\n" +
+                    "    [\"22\", \"3\", \"पोषण\"],\n" +
+                    "    [\"23\", \"3\", \"सामान\"],\n" +
+                    "    [\"24\", \"3\", \"सौंदर्य\"]\n" +
+                    "  ]\n" +
+                    "}";
             try {
-                final JSONObject jsonObject = new JSONObject(expTypeList);
+
+                final String lang_code = mySharedPreferences.getStringParams(SharedPrefsConstants.USER_SELECTED_LANGUAGE_CODE,
+                        SharedPrefsConstants.DEFAULT_LANGUAGE_CODE);
+
+                JSONObject jsonObject = new JSONObject();
+                if (lang_code.equals("hi"))
+                    jsonObject = new JSONObject(expTypeList_Hi);
+                else if (lang_code.equals("en"))
+                    jsonObject = new JSONObject(expTypeList);
+
                 final JSONArray jsonArray = jsonObject.getJSONArray("Expense_Heads");
 
                 for (int index = 0; index < jsonArray.length(); index++) {
@@ -443,7 +482,7 @@ public class HomeFragment extends Fragment {
                 new ExpenseType(
                         "0",
                         "0",
-                        "All",
+                        getResources().getString(R.string.fh_all),
                         true
                 )
         );

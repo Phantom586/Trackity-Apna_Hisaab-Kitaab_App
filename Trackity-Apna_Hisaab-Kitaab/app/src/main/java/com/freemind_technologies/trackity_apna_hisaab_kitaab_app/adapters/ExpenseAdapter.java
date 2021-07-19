@@ -124,9 +124,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.EAViewHo
             public void onClick(View v) {
 
                 new MaterialAlertDialogBuilder(v.getContext())
-                        .setTitle("Delete Expense")
-                        .setMessage("Are you sure you want to delete this expense!")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(v.getContext().getResources().getString(R.string.ea_del_header))
+                        .setMessage(v.getContext().getResources().getString(R.string.ea_del_desc))
+                        .setPositiveButton(v.getContext().getResources().getString(R.string.ea_positive_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (mListener != null) {
@@ -134,7 +134,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.EAViewHo
                                 }
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(v.getContext().getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 

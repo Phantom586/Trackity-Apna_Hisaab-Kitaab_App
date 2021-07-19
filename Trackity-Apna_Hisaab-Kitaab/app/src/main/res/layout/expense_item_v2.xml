@@ -60,7 +60,7 @@
                             android:textSize="15sp"
                             android:textColor="#FFF"
                             android:fontFamily="@font/fira_mono_medium"
-                            android:text="Some Random Desc such as, just trying out the layout of the expense card item"/>
+                            android:text="@string/expV2_demo_desc"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                                 android:fontFamily="@font/fira_mono_bold"
                                 android:textColor="#FFF"
                                 android:textSize="14sp"
-                                android:text="$12500"/>
+                                android:text="@string/expV2_demo_amt"/>
 
                             <TextView
                                 android:id="@+id/ei_exp_sub_head"
@@ -98,7 +98,7 @@
                                 android:fontFamily="@font/fira_mono"
                                 android:textColor="@color/text_color_3"
                                 android:textSize="10sp"
-                                android:text="Electricity/Mobile"/>
+                                android:text="@string/expV2_demo_cat"/>
 
                             <TextView
                                 android:id="@+id/ei_exp_date"
@@ -111,7 +111,7 @@
                                 android:fontFamily="@font/fira_mono"
                                 android:textSize="12sp"
                                 android:textColor="#FFF"
-                                android:text="01 - 31"/>
+                                android:text="@string/expV2_emo_date_range"/>
 
                             <TextView
                                 android:id="@+id/ei_exp_time"
@@ -123,7 +123,7 @@
                                 android:fontFamily="@font/fira_mono"
                                 android:textSize="12sp"
                                 android:textColor="#FFF"
-                                android:text="4:30 pm"/>
+                                android:text="@string/aeb_demo_time"/>
 
                         </LinearLayout>
 

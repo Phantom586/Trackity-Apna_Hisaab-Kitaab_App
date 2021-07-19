@@ -183,7 +183,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/fira_mono"
                                 android:padding="10dp"
-                                android:text="04, Jan 21"
+                                android:text="@string/aeb_demo_date"
                                 android:textColor="@color/text_color_3"/>
 
                         </androidx.cardview.widget.CardView>
@@ -205,7 +205,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/fira_mono"
                                 android:padding="10dp"
-                                android:text="04:30 pm"
+                                android:text="@string/aeb_demo_time"
                                 android:textColor="@color/text_color_3" />
 
                         </androidx.cardview.widget.CardView>
@@ -228,7 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_medium"
-                    android:text="Expense Heads"
+                    android:text="@string/aeb_exp_head"
                     android:textColor="@color/week_day_text_color"
                     android:textSize="14sp" />
 

@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_medium"
                     android:textColor="@color/text_color_3"
-                    android:text="Hi, "
+                    android:text="@string/pf_hi"
                     android:textSize="16sp" />
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_bold"
-                    android:text="Welcome"
+                    android:text="@string/pf_welcome"
                     android:textColor="@color/heading_text_color"
                     android:textSize="20sp" />
 
@@ -82,7 +82,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/lato"
-                    android:text="Sign In with Google"
+                    android:text="@string/pf_google_signIn"
                     android:textColor="@color/text_color_3"
                     android:textSize="14sp" />
 
@@ -141,7 +141,7 @@
                     android:fontFamily="@font/lato_bold"
                     android:textColor="@color/text_color_3"
                     android:textSize="16sp"
-                    android:text="Jan's"/>
+                    android:text="@string/pf_head_month_name"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/lato"
                     android:textSize="16sp"
-                    android:text="Expense"/>
+                    android:text="@string/pf_expense"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                     android:fontFamily="@font/lato_bold"
                     android:textColor="@color/heading_text_color"
                     android:textSize="16sp"
-                    android:text="₹"/>
+                    android:text="@string/fh_rupees_symbol"/>
 
                 <TextView
                     android:id="@+id/fp_total_month_amount"
@@ -187,7 +187,7 @@
                     android:fontFamily="@font/lato_bold"
                     android:textSize="16sp"
                     android:textColor="@color/text_color_3"
-                    android:text="Overview" />
+                    android:text="@string/pf_overview" />
 
                 <View
                     android:layout_width="0dp"
@@ -219,7 +219,7 @@
                         android:padding="10dp"
                         android:fontFamily="@font/lato"
                         android:textColor="@color/text_color_3"
-                        android:text="January" />
+                        android:text="@string/pf_demo_month_name" />
 
                     <ImageView
                         android:id="@+id/fp_month_forward"
@@ -273,7 +273,7 @@
                     android:fontFamily="@font/lato"
                     android:textSize="16sp"
                     android:textColor="@color/text_color_3"
-                    android:text="Manage Expense Types" />
+                    android:text="@string/pf_mg_exp_type" />
 
                 <Space
                     android:layout_width="0dp"
@@ -293,7 +293,7 @@
                     android:fontFamily="@font/lato"
                     android:textSize="10sp"
                     android:textColor="@color/text_color_4"
-                    android:text="New" />
+                    android:text="@string/pf_new" />
 
             </LinearLayout>
 
@@ -319,7 +319,7 @@
                     android:fontFamily="@font/lato"
                     android:textSize="16sp"
                     android:textColor="@color/text_color_3"
-                    android:text="Expense Summary" />
+                    android:text="@string/pf_exp_summary" />
 
                 <Space
                     android:layout_width="0dp"
@@ -339,7 +339,33 @@
                     android:fontFamily="@font/lato"
                     android:textSize="10sp"
                     android:textColor="@color/text_color_4"
-                    android:text="New" />
+                    android:text="@string/pf_new" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fp_change_localization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/localize"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/lato"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_color_3"
+                    android:text="@string/pf_change_localization" />
 
             </LinearLayout>
 
@@ -456,7 +482,7 @@
                     android:fontFamily="@font/lato"
                     android:textSize="16sp"
                     android:textColor="@color/text_color_3"
-                    android:text="Logout" />
+                    android:text="@string/fh_logout" />
 
             </LinearLayout>
 

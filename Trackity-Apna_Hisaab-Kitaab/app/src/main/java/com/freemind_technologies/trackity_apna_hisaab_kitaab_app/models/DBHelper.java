@@ -223,6 +223,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor fetchAllExpenseTypes() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.query(TABLE_EXPENSE_TYPES, null, null, null, null, null, null);
+
+        return res;
+
+    }
+
     public Cursor fetchSubHeadByID(String id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -278,10 +287,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteExpenseType__byID(String id) {
+    public void deleteExpenseType__byID(String id, boolean isHead) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_EXPENSE_TYPES, exp_col_0 + "=?", new String[] {id});
+        db.delete(TABLE_EXPENSE_TYPES, exp_type_col_0 + "=?", new String[] {id});
+
+        if (isHead)
+            db.delete(TABLE_EXPENSE_TYPES, exp_type_col_1 + "=?", new String[] {id});
 
     }
 
@@ -584,6 +596,20 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    public void updateExpenseTypes__byID(String id, String name) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        final ContentValues cv = new ContentValues();
+        cv.put("Name", name);
+        cv.put("Stored", "No");
+
+        int res = db.update(TABLE_EXPENSE_TYPES, cv, "ID=?", new String[] {id});
+        db.close();
+
+    }
+
 
     public boolean storeDeletedItem(String ID, String Table_Name) {
 

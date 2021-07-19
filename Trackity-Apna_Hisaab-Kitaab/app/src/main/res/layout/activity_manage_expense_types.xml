@@ -47,7 +47,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:fontFamily="@font/fira_mono_bold"
-            android:text="Manage Expense"
+            android:text="@string/met_header"
             android:textColor="@color/heading_text_color"
             android:textSize="20sp" />
 
@@ -59,7 +59,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:fontFamily="@font/fira_mono"
-            android:text="Types"
+            android:text="@string/met_post_header"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -96,7 +96,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/fira_mono_medium"
                 android:gravity="center_vertical"
-                android:text="Expense Heads"
+                android:text="@string/met_exp_head"
                 android:textColor="@color/text_color_3"
                 android:textSize="16sp" />
 
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono_medium"
                     android:gravity="center_vertical"
-                    android:text="Expense Sub-Heads"
+                    android:text="@string/es_exp_subHead"
                     android:textColor="@color/text_color_3"
                     android:textSize="16sp" />
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_mono"
                     android:gravity="center_vertical"
-                    android:text="(Click on the heads to display Sub-heads)"
+                    android:text="@string/met_subHead_help_text"
                     android:textColor="@color/text_color_3"
                     android:textSize="10sp" />
 

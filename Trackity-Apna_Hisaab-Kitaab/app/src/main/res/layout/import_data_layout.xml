@@ -58,7 +58,7 @@
                     android:gravity="center_vertical"
                     android:fontFamily="@font/fira_mono"
                     android:textColor="@color/text_color_3"
-                    android:text="Importing Data! ..."/>
+                    android:text="@string/idl_header"/>
 
                 <Space
                     android:layout_width="0dp"

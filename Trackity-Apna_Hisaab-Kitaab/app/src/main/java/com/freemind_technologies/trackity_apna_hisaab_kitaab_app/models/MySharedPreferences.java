@@ -18,6 +18,7 @@ import android.content.SharedPreferences;
 
 public class MySharedPreferences {
 
+    private static final String PREFS_NAME = "FM_TR_HK";
     private SharedPreferences prefs;
     private Context context;
 
@@ -25,7 +26,7 @@ public class MySharedPreferences {
 
     public String getLoginMethod() {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String res = prefs.getString("loginMethod", "");
         return res;
 
@@ -33,7 +34,7 @@ public class MySharedPreferences {
 
     public void setLoginMethod(String method){
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("loginMethod", method);
         editor.apply();
@@ -42,7 +43,7 @@ public class MySharedPreferences {
 
     public boolean getExpTypesStored() {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean res = prefs.getBoolean("expTypeStored", false);
         return res;
 
@@ -50,7 +51,7 @@ public class MySharedPreferences {
 
     public void setUpdateDone(boolean status) {
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("updateDone", status);
         editor.apply();
@@ -59,7 +60,7 @@ public class MySharedPreferences {
 
     public boolean isUpdateDone() {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean res = prefs.getBoolean("updateDone", false);
         return res;
 
@@ -67,7 +68,7 @@ public class MySharedPreferences {
 
     public void setExpTypesStored(boolean status) {
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("expTypeStored", status);
         editor.apply();
@@ -76,7 +77,7 @@ public class MySharedPreferences {
 
     public boolean isLoggedIn() {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean res = prefs.getBoolean("isLoggedIn", false);
         return res;
 
@@ -84,7 +85,7 @@ public class MySharedPreferences {
 
     public void setLoggedIn(boolean status){
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isLoggedIn", status);
         editor.apply();
@@ -93,7 +94,7 @@ public class MySharedPreferences {
 
     public String getUserID() {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String res = prefs.getString("User_ID", "");
         return res;
 
@@ -101,7 +102,7 @@ public class MySharedPreferences {
 
     public void setUserID(String id){
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("User_ID", id);
         editor.apply();
@@ -110,7 +111,7 @@ public class MySharedPreferences {
 
     public boolean isDiscovered(String key) {
 
-        prefs = this.context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean res = prefs.getBoolean(key, false);
         return res;
 
@@ -118,9 +119,41 @@ public class MySharedPreferences {
 
     public void setDiscovered(String key, boolean status){
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("FM_TR_HK", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, status);
+        editor.apply();
+
+    }
+
+    public String getStringParams(String a_ParamName, String defaultValue) {
+
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(a_ParamName, defaultValue);
+
+    }
+
+    public void setStringParams(String a_ParamName, String a_ParamValue) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(a_ParamName, a_ParamValue);
+        editor.apply();
+    }
+
+    public boolean isFirstTime() {
+
+        prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        boolean res = prefs.getBoolean("isFirstTime", true);
+        return res;
+
+    }
+
+    public void setFirstTime(){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isFirstTime", false);
         editor.apply();
 
     }

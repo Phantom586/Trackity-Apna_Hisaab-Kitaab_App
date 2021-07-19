@@ -388,7 +388,8 @@ public class ExpenseDetails extends AppCompatActivity {
                 else if (dbOp.equals("store"))
                     utilities.syncExpenseTableData(TAG, null, true, false, false, false, true);
             }
-            utilities.showTopSnackBar(this, coordinatorLayout,"Expense Updated!", R.color.purple_200);
+            utilities.showTopSnackBar(this, coordinatorLayout,getResources().getString(R.string.aed_exp_updated),
+                    R.color.purple_200);
             showExpenseData();
 
         }
@@ -398,9 +399,9 @@ public class ExpenseDetails extends AppCompatActivity {
     public void deleteExpense(View view) {
 
         new MaterialAlertDialogBuilder(this)
-                .setTitle("Delete Expense")
-                .setMessage("Are you sure you want to delete this expense!")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(getResources().getString(R.string.ea_del_header))
+                .setMessage(getResources().getString(R.string.ea_del_desc))
+                .setPositiveButton(getResources().getString(R.string.ea_positive_btn_text), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -421,7 +422,7 @@ public class ExpenseDetails extends AppCompatActivity {
 
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

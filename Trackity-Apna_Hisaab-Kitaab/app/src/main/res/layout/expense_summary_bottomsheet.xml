@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:fontFamily="@font/fira_mono_bold"
-                android:text="₹"
+                android:text="@string/fh_rupees_symbol"
                 android:textColor="@color/text_color_3"
                 android:textSize="14sp" />
 
@@ -112,7 +112,7 @@
             android:paddingEnd="16dp"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/lato"
-            android:text="Choose a date range"
+            android:text="@string/esbs_choose_date_range"
             android:textColor="@color/text_color_3"
             android:textSize="14sp" />
 
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:onClick="Go_to_Profile"
-            android:text="Search"
+            android:text="@string/esbs_search"
             android:textAllCaps="false"
             android:textAppearance="?attr/textAppearanceButton"
             android:textColor="#FFF"

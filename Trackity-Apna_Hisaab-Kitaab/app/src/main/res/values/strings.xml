@@ -13,6 +13,7 @@
 
 <resources>
     <string name="app_name">Trackity</string>
+    <string name="app_motto">Apna Hisaab-Kitaab</string>
 
     <!-- SplashScreen -->
     <string name="name_app">Trackity</string>
@@ -32,6 +33,11 @@
     <string name="fh_desc_2">+</string>
     <string name="fh_desc_3">Button.</string>
     <string name="fh_card_header">Start adding your expenses</string>
+    <string name="fh_main_header">Expenses</string>
+    <string name="fh_demo_amt">5600</string>
+    <string name="fh_rupees_symbol">₹</string>
+    <string name="fh_card_header0">Click here to add a Expense!</string>
+    <string name="fh_all">All</string>
 
     <!-- AddExpense Fragment -->
     <string name="ae_Rs">(₹)</string>
@@ -43,5 +49,104 @@
     <string name="aed_update">Update</string>
     <string name="aed_delete">Delete</string>
     <string name="met_add_exp_type">Save</string>
+    <string name="aed_exp_updated">Expense Updated!</string>
+
+    <!-- AddExpenseBottomSheet -->
+    <string name="aeb_add">Add</string>
+    <string name="aeb_expense">Expense</string>
+    <string name="aeb_desc_hint">Expense Description</string>
+    <string name="aeb_amt">Amount</string>
+    <string name="aeb_demo_date">04, Jan 21</string>
+    <string name="aeb_demo_time">04:30 pm</string>
+    <string name="aeb_exp_head">Expense Heads</string>
+    <string name="aeb_subhead_hint">(Select a Expense Head to see its Sub-Heads)</string>
+    <string name="aeb_floating_label_txt">Choose Expense Sub-Head</string>
+
+    <!-- expense_item_v2 -->
+    <string name="expV2_demo_desc">Some Random Desc such as, just trying out the layout of the expense card item</string>
+    <string name="expV2_demo_amt">$12500</string>
+    <string name="expV2_demo_cat">Electricity/Mobile</string>
+    <string name="expV2_emo_date_range">01 - 31</string>
+    <string name="exp_type_demo_cat">Something Testing</string>
+
+    <!-- LocalizationActivity -->
+    <string name="localize_header">Select Your Language</string>
+    <string name="localize_en">English</string>
+    <string name="localize_hi">Hindi</string>
+    <string name="localize_btn_text">Continue</string>
+    <string name="localize_disp_text">Welcome</string>
+    <string name="localize_alt_disp_txt">Language Changed</string>
+
+    <!-- ProfileFragment -->
+    <string name="pf_change_localization">Change Language</string>
+    <string name="pf_new">New</string>
+    <string name="pf_exp_summary">Expense Summary</string>
+    <string name="pf_mg_exp_type">Manage Expense Types</string>
+    <string name="pf_overview">Overview</string>
+    <string name="pf_demo_month_name">January</string>
+    <string name="pf_head_month_name">Jan\'s</string>
+    <string name="pf_google_signIn">Sign In with Google</string>
+    <string name="pf_welcome"> Welcome</string>
+    <string name="pf_hi">Hi, </string>
+    <string name="pf_expense">Expense</string>
+    <string name="pf_jan">January</string>
+    <string name="pf_feb">February</string>
+    <string name="pf_mar">March</string>
+    <string name="pf_apr">April</string>
+    <string name="pf_may">May</string>
+    <string name="pf_jun">June</string>
+    <string name="pf_jul">July</string>
+    <string name="pf_aug">August</string>
+    <string name="pf_sep">September</string>
+    <string name="pf_oct">October</string>
+    <string name="pf_nov">November</string>
+    <string name="pf_dec">December</string>
+    <string name="pf_logout_adb_header">Logout Account</string>
+    <string name="pf_logout_adb_desc">Are you sure you want to logout!</string>
+
+    <!-- ExpenseSummary -->
+    <string name="es_summary">Summary</string>
+    <string name="es_choose_exp_head">Choose an Expense Head</string>
+    <string name="es_exp_subHead">Expense Sub-Head</string>
+    <string name="es_tot_exp">Total Expense</string>
+    <string name="esbs_choose_date_range">Choose a date range</string>
+    <string name="esbs_search">Search</string>
+    <string name="es_no_exp">There are No Expenses in this Sub-Head!</string>
+
+    <!-- ManageExpenseTypes -->
+    <string name="met_header">Manage Expense</string>
+    <string name="met_post_header">Types</string>
+    <string name="met_exp_head">Expense Heads</string>
+    <string name="met_subHead_help_text">(Click on the heads to display Sub-heads)</string>
+    <string name="met_del_header">Delete Expense Header</string>
+    <string name="met_del_desc">Are you sure you want to delete this expense header!</string>
+    <string name="met_adb_save">Save</string>
+    <string name="met_del_sub_header">Delete Expense Sub-Header</string>
+    <string name="met_del_sub_desc">Are you sure you want to delete this expense Sub-Header!</string>
+    <string name="met_create_exp_head">Create Expense Header</string>
+    <string name="met_create_exp_sub_head">Create Expense Sub-Header</string>
+
+    <!-- SubHeaderExpenses -->
+    <string name="she_demo_head">Electricity/Mobile</string>
+    <string name="she_exp">Expenses</string>
+
+    <string name="db_sync_header">Syncing Data to Cloud! ...</string>
+    <string name="idl_header">Importing Data! ...</string>
+    <string name="ea_del_header">Delete Expense</string>
+    <string name="ea_del_desc">Are you sure you want to delete this expense!</string>
+    <string name="ea_positive_btn_text">Yes</string>
+    <string name="ea_negative_btn_text">Cancel</string>
+    <string name="util_internet_connected">Internet is Connected</string>
+    <string name="util_internet_not_connected">No Internet Connection!</string>
+    <string name="util_data_sync_successful">Data Synced Successfully!</string>
+    <string name="util_no_data_uploaded_yet">No Data uploaded yet from this Account!</string>
+
+    <!-- UpdateAppActivity -->
+    <string name="ua_update">Update Now</string>
+    <string name="ua_header">Update Available</string>
+    <string name="ua_demo_v1">(v1.3.1</string>
+    <string name="ua_demo_v2"> >> </string>
+    <string name="ua_demo_v3">v1.3.2)</string>
+    <string name="ua_desc">A new version is available on playstore for this app, kindly update the app in order to benefit from those features, and continue using the app.</string>
 
 </resources>

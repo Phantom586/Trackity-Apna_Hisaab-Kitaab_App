@@ -16,6 +16,7 @@ package com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.bottomNa
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,11 +49,13 @@ import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.VerifyU
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.BgWorker;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.DBHelper;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.MySharedPreferences;
+import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.SharedPrefsConstants;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.Utilities;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.network.NetworkHandler;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.CustomImportProgressDialog;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.CustomSyncProgressDialog;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.ExpenseSummary;
+import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.Localization;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.ManageExpenseTypes;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -100,13 +103,14 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
 
     private LinearLayout ll_manage_exp_types, ll_logout, ll_import, ll_sync_db, ll_google_signIn,
-            ll_expense_summary, ll_feedback;
+            ll_expense_summary, ll_feedback, ll_change_localization;
     private TextView tv_user_name, tv_month_name, tv_total_amt_month_name, tv_total_month_amt,
             tv_new_exp_type, tv_new_exp_summary;
     private static final int REQUEST_CODE_GOOGLE_SIGN_IN = 234;
     private CustomImportProgressDialog importProgressDialog;
     private CustomSyncProgressDialog syncProgressDialog;
     private ImageView im_month_back, im_month_forward;
+    private MySharedPreferences mySharedPreferences;
     private GoogleSignInClient googleSignInClient;
     private final String TAG = "ProfileFragment";
     private CoordinatorLayout coordinatorLayout;
@@ -128,6 +132,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         total_expenses_chart = view.findViewById(R.id.fp_total_expenses_bar_chart);
+        ll_change_localization = view.findViewById(R.id.fp_change_localization);
         tv_total_amt_month_name = view.findViewById(R.id.fp_month_exp_name);
         tv_total_month_amt = view.findViewById(R.id.fp_total_month_amount);
         ll_manage_exp_types = view.findViewById(R.id.fp_manage_exp_types);
@@ -137,6 +142,7 @@ public class ProfileFragment extends Fragment {
         ll_google_signIn = view.findViewById(R.id.fp_google_signIn);
         im_month_forward = view.findViewById(R.id.fp_month_forward);
         tv_new_exp_type = view.findViewById(R.id.fp_met_first_time);
+        mySharedPreferences = new MySharedPreferences(getContext());
         im_profile_pic = view.findViewById(R.id.fh_profile_pic);
         im_month_back = view.findViewById(R.id.fp_month_back);
         mySharedPrefs = new MySharedPreferences(getContext());
@@ -229,8 +235,10 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 if (isOnline)
                     signIn();
-                else
-                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
+                else {
+                    String msg = getResources().getString(R.string.util_internet_not_connected);
+                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, msg);
+                }
             }
         });
 
@@ -262,13 +270,24 @@ public class ProfileFragment extends Fragment {
 //            }
 //        });
 
+        ll_change_localization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(v.getContext(), Localization.class);
+                in.putExtra("isFirstTime", "false");
+                v.getContext().startActivity(in);
+            }
+        });
+
         ll_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isOnline)
                     logoutUser();
-                else
-                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, isOnline);
+                else {
+                    String msg = getResources().getString(R.string.util_internet_not_connected);
+                    utilities.showInternetConnectionStatus__SnackBar(getContext(), coordinatorLayout, msg);
+                }
             }
         });
 
@@ -579,33 +598,41 @@ public class ProfileFragment extends Fragment {
         syncProgressDialog.show();
         utilities.syncExpenseTableData(TAG, syncProgressDialog, false, false, false, true, false);
 
-        utilities.syncExpenseTypeData(TAG, syncProgressDialog, false, false, true, false);
+        utilities.syncExpenseTypeData(TAG, syncProgressDialog, false, false, true, "false", false);
         syncProgressDialog.hide();
 
-        utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Synced Successfully!", R.color.internet_status_color);
+        utilities.showBottomSnackBar(getContext(), coordinatorLayout, getResources().getString(R.string.util_data_sync_successful),
+                R.color.internet_status_color);
 
     }
 
     private void setup() {
 
-        monthsList.add("January");
-        monthsList.add("February");
-        monthsList.add("March");
-        monthsList.add("April");
-        monthsList.add("May");
-        monthsList.add("June");
-        monthsList.add("July");
-        monthsList.add("August");
-        monthsList.add("September");
-        monthsList.add("October");
-        monthsList.add("November");
-        monthsList.add("December");
+        final Resources resources = getResources();
+
+        monthsList.add(resources.getText(R.string.pf_jan).toString());
+        monthsList.add(resources.getText(R.string.pf_feb).toString());
+        monthsList.add(resources.getText(R.string.pf_mar).toString());
+        monthsList.add(resources.getText(R.string.pf_apr).toString());
+        monthsList.add(resources.getText(R.string.pf_may).toString());
+        monthsList.add(resources.getText(R.string.pf_jun).toString());
+        monthsList.add(resources.getText(R.string.pf_jul).toString());
+        monthsList.add(resources.getText(R.string.pf_aug).toString());
+        monthsList.add(resources.getText(R.string.pf_sep).toString());
+        monthsList.add(resources.getText(R.string.pf_oct).toString());
+        monthsList.add(resources.getText(R.string.pf_nov).toString());
+        monthsList.add(resources.getText(R.string.pf_dec).toString());
 
         final Calendar calendar = Calendar.getInstance();
         month_no = calendar.get(Calendar.MONTH);
         String month_name = monthsList.get(month_no);
         tv_month_name.setText(month_name);
-        month_name += "'s";
+
+        final String lang_code = mySharedPreferences.getStringParams(SharedPrefsConstants.USER_SELECTED_LANGUAGE_CODE,
+                SharedPrefsConstants.DEFAULT_LANGUAGE_CODE);
+        if (lang_code.equals("en"))
+            month_name += "'s";
+
         tv_total_amt_month_name.setText(month_name);
 
         if (month_no == 0) {
@@ -770,7 +797,8 @@ public class ProfileFragment extends Fragment {
                 }
 
                 importProgressDialog.hide();
-                utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Imported Successfully!", R.color.internet_status_color);
+                utilities.showBottomSnackBar(getContext(), coordinatorLayout, getResources().getString(R.string.util_data_sync_successful),
+                        R.color.internet_status_color);
 
                 initLineChart();
                 calculateMonthlyExpense();
@@ -779,7 +807,8 @@ public class ProfileFragment extends Fragment {
             } else if (responseCode.equals("404")) {
 
                 importProgressDialog.hide();
-                utilities.showBottomSnackBar(getContext(), coordinatorLayout, "No Data uploaded yet from this Account!", R.color.internet_status_color);
+                utilities.showBottomSnackBar(getContext(), coordinatorLayout, getResources().getString(R.string.util_no_data_uploaded_yet),
+                        R.color.internet_status_color);
 
             }
 
@@ -867,9 +896,9 @@ public class ProfileFragment extends Fragment {
         if (loginMethod.equals("Google")) {
 
             new MaterialAlertDialogBuilder(getContext())
-                    .setTitle("Logout Account")
-                    .setMessage("Are you sure you want to logout!")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setTitle(getResources().getString(R.string.pf_logout_adb_header))
+                    .setMessage(getResources().getString(R.string.pf_logout_adb_desc))
+                    .setPositiveButton(getResources().getString(R.string.ea_positive_btn_text), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -903,7 +932,7 @@ public class ProfileFragment extends Fragment {
 
                         }
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getResources().getString(R.string.ea_negative_btn_text), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 

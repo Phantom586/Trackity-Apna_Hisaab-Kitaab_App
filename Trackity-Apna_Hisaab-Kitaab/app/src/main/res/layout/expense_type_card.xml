@@ -39,7 +39,7 @@
                 android:textSize="12sp"
                 android:textColor="#FFF"
                 android:fontFamily="@font/fira_mono_medium"
-                android:text="Something Testing"/>
+                android:text="@string/exp_type_demo_cat"/>
 
         </LinearLayout>
 
