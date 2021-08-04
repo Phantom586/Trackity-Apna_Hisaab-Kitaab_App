@@ -432,6 +432,8 @@ public class HomeFragment extends Fragment {
 
         }
 
+        res.close();
+
     }
 
     private void fetchTodayTotalExpense() {
@@ -447,6 +449,8 @@ public class HomeFragment extends Fragment {
         if (totalAmt == null)
             totalAmt = "0";
         Log.d(TAG, "Today's Total Expense Amount : "+totalAmt);
+
+        res.close();
 
         tv_today_total_expense.setText(totalAmt);
 

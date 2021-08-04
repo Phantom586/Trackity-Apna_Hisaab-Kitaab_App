@@ -258,6 +258,8 @@ public class ExpenseSummary extends AppCompatActivity {
         if (month_expense == null)
             month_expense = "0";
 
+        res.close();
+
         tv_total_exp_amt.setText(month_expense);
 
     }
@@ -317,6 +319,8 @@ public class ExpenseSummary extends AppCompatActivity {
             );
 
         }
+
+        res.close();
 
         for (ExpenseType expenseType : expSubHeadsList) {
 

@@ -173,6 +173,8 @@ public class Localization extends AppCompatActivity {
 
                 }
 
+                res.close();
+
                 final boolean isLoggedIn = mySharedPreferences.isLoggedIn();
                 if (isOnline && isLoggedIn)
                     utilities.syncExpenseTypeData(TAG,  null, false, false, true, "true", true);

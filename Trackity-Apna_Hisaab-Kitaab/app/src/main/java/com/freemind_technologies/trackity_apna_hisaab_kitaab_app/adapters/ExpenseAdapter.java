@@ -103,6 +103,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.EAViewHo
             }
         }
 
+        res.close();
+
         holder.tv_time.setText(expenses.getTime());
 
         holder.ll_content.setOnClickListener(new View.OnClickListener() {

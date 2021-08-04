@@ -23,10 +23,6 @@ import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.R;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.ResponseResult;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.SyncDBResult;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.SyncStatus;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.network.NetworkHandler;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.CustomSyncProgressDialog;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -40,12 +36,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Utilities {
 
@@ -192,55 +182,6 @@ public class Utilities {
                     e.printStackTrace();
                 }
 
-//                RequestBody data = RequestBody.create(sqliteDump, MediaType.parse("text/plain"));
-//
-//                Call<SyncDBResult> call = NetworkHandler.getNetworkHandler(this.context).getNetworkApi().syncExpenseTableData(data);
-//                call.enqueue(new Callback<SyncDBResult>() {
-//                    @Override
-//                    public void onResponse(Call<SyncDBResult> call, Response<SyncDBResult> response) {
-//                        Log.d(TAG, "onResponse: call" + response.isSuccessful());
-//
-//                        List<SyncStatus> storeResponse = response.body().getStoreResponse();
-//                        List<SyncStatus> updateResponse = response.body().getUpdateResponse();
-//                        ResponseResult result = response.body().getResponseResult();
-//
-//                        final String responseCode = result.getResponseCode();
-//
-//                        if (responseCode.equalsIgnoreCase("200")) {
-//
-//                            Log.d(TAG, "ExpenseData Stored in DB Successfully");
-//
-//                            if (storeResponse.size() > 0) {
-//                                for (SyncStatus syncStatus: storeResponse) {
-//
-//                                    Log.d(TAG, "Stored :: ID -> "+syncStatus.getId()+ ", Status -> "+syncStatus.getStatus());
-//                                    dbHelper.updateSyncStatus__ExpenseTable(syncStatus.getId(), "Stored", syncStatus.getStatus());
-//
-//                                }
-//                            }
-//
-//                            if (updateResponse.size() > 0) {
-//                                for (SyncStatus syncStatus: updateResponse) {
-//
-//                                    Log.d(TAG, "Update :: ID -> "+syncStatus.getId()+ ", Status -> "+syncStatus.getStatus());
-//                                    dbHelper.updateSyncStatus__ExpenseTable(syncStatus.getId(), "Updated", syncStatus.getStatus());
-//
-//                                }
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<SyncDBResult> call, Throwable t) {
-//
-//                        if (!silentMode) progressDialog.hide();
-//                        Log.d(TAG, "Failed Somehow");
-//                    }
-//                });
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -286,44 +227,6 @@ public class Utilities {
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
-
-//            RequestBody data = RequestBody.create(sqliteDump, MediaType.parse("text/plain"));
-//
-//            Call<SyncDBResult> call = NetworkHandler.getNetworkHandler(this.context).getNetworkApi().syncExpenseTypeData(data);
-//            call.enqueue(new Callback<SyncDBResult>() {
-//                @Override
-//                public void onResponse(Call<SyncDBResult> call, Response<SyncDBResult> response) {
-//                    Log.d(TAG, "onResponse: call" + response.isSuccessful());
-//
-//                    List<SyncStatus> storeResponse = response.body().getStoreResponse();
-//                    ResponseResult result = response.body().getResponseResult();
-//
-//                    final String responseCode = result.getResponseCode();
-//
-//                    if (responseCode.equalsIgnoreCase("200")) {
-//
-//                        Log.d(TAG, "ExpenseTypes Stored in DB Successfully");
-//
-//                        for (SyncStatus syncStatus: storeResponse) {
-//
-//                            Log.d(TAG, "ID -> "+syncStatus.getId()+ ", Status -> "+syncStatus.getStatus());
-//                            dbHelper.updateSyncStatus__ExpenseTypes(syncStatus.getId(), syncStatus.getStatus());
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<SyncDBResult> call, Throwable t) {
-//
-//                    if (!silentMode) progressDialog.hide();
-//
-//                    Log.d(TAG, "Failed Somehow");
-//                }
-//            });
-
 
         } catch (JSONException e) {
             e.printStackTrace();

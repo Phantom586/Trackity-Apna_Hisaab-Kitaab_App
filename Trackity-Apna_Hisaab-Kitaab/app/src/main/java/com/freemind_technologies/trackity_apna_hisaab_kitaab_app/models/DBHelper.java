@@ -117,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d(TAG, "Adding Expense : "+contentValues.toString());
 
         long res = db.insert(TABLE_EXPENSES, null, contentValues);
+        db.close();
         if(res == -1){
             return false;
         } else {
@@ -158,6 +159,7 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put(exp_type_col_3, "No");
 
         long res = db.insert(TABLE_EXPENSE_TYPES, null, contentValues);
+        db.close();
         if(res == -1){
             return false;
         } else {
@@ -176,6 +178,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(exp_type_col_3, "No");
 
         long res = db.insert(TABLE_EXPENSE_TYPES, null, contentValues);
+        db.close();
         Log.d(TAG, "Newly Inserted ExpHead Result ->"+res);
         return String.valueOf(res);
 
@@ -191,6 +194,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(exp_type_col_3, "No");
 
         long res = db.insert(TABLE_EXPENSE_TYPES, null, contentValues);
+        db.close();
 
     }
 
@@ -264,6 +268,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String total_expense = res.getString(0);
         if (total_expense == null)
             total_expense = "0";
+        db.close();
 
         return total_expense;
 
@@ -284,6 +289,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_EXPENSES, exp_col_0 + "=?", new String[] {id});
+        db.close();
 
     }
 
@@ -294,6 +300,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (isHead)
             db.delete(TABLE_EXPENSE_TYPES, exp_type_col_1 + "=?", new String[] {id});
+        db.close();
 
     }
 
@@ -335,7 +342,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d(TAG, "Updating Expense : "+cv.toString());
 
         res = db.update(TABLE_EXPENSES, cv, "ID=?", new String[] {id});
-
+        db.close();
         return syncType;
 
     }
@@ -394,7 +401,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         final Cursor res = db.query(TABLE_EXPENSES, null, null, null, null, null, null);
         count = res.getCount();
-
+        db.close();
         return count > 0;
 
     }
@@ -622,6 +629,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d(TAG, "Deleted Item : "+contentValues.toString());
 
         long res = db.insert(TABLE_DELETED, null, contentValues);
+        db.close();
         if(res == -1){
             return false;
         } else {

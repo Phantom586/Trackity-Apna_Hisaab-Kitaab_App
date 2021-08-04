@@ -100,6 +100,8 @@ public class SubHeaderExpenses extends AppCompatActivity {
 
         }
 
+        res.close();
+
         expenseAdapter.notifyDataSetChanged();
 
     }

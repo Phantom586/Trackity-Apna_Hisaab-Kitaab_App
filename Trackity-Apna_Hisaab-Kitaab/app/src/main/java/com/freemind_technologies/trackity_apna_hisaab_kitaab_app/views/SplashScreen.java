@@ -107,8 +107,7 @@ public class SplashScreen extends AppCompatActivity {
                         final boolean firstTime = mySharedPreferences.isFirstTime();
                         Intent in;
                         if (firstTime) {
-                            in = new Intent(SplashScreen.this, Localization.class);
-                            in.putExtra("isFirstTime", "true");
+                            in = new Intent(SplashScreen.this, PolicyAccept.class);
                         }
                         else
                             in = new Intent(SplashScreen.this, MainActivity.class);

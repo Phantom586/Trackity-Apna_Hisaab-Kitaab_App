@@ -331,6 +331,8 @@ public class ExpenseDetails extends AppCompatActivity {
 
         }
 
+        res.close();
+
     }
 
     private boolean isValidated() {

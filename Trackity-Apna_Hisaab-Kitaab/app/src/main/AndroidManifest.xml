@@ -26,7 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trackity_Apna_HisaabKitaab_App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.UpdateApp"></activity>
+        <activity android:name=".views.PolicyAccept"></activity>
+        <activity android:name=".views.PrivacyPolicy" />
+        <activity android:name=".views.UpdateApp" />
         <activity
             android:name=".views.Localization"
             android:configChanges="locale" />

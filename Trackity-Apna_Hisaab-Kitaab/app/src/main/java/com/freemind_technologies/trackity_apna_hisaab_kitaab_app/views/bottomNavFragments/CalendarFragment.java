@@ -244,42 +244,6 @@ public class CalendarFragment extends Fragment {
 
         }
 
-//        Call<ExpenseTypeResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().fetchExpenseTypes();
-//
-//        call.enqueue(new Callback<ExpenseTypeResult>() {
-//            @Override
-//            public void onResponse(Call<ExpenseTypeResult> call, Response<ExpenseTypeResult> response) {
-//
-//                Log.d(TAG, "onResponse: call"+response.isSuccessful());
-//
-//                ResponseResult result = response.body().getResponseResult();
-//
-//                List<List<String>> expenseTypeResult = response.body().getExpense_type_list();
-//                if (expenseTypeResult != null) {
-//
-//                    ListIterator<List<String>> iter = expenseTypeResult.listIterator();
-//                    if (result.getResponseCode().equalsIgnoreCase("200")) {
-//
-//                        while (iter.hasNext()) {
-//
-//                            List<String> expTypeList = iter.next();
-//
-//                            expenseTypePopUpList.add(expTypeList.get(1));
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ExpenseTypeResult> call, Throwable t) {
-//
-//            }
-//        });
-
     }
 
 }

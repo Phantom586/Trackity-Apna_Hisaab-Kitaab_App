@@ -50,9 +50,8 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColorHighlight="@color/text_color_3"
                 android:text="@string/name_app"
-                android:textColor="#707070"
+                android:textColor="@color/text_color_3"
                 android:fontFamily="@font/fira_mono_bold"
                 android:textSize="20sp"/>
 
@@ -60,8 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_motto"
-                android:textColorHighlight="@color/text_color_3"
-                android:textColor="#707070"
+                android:textColor="@color/text_color_3"
                 android:fontFamily="@font/fira_mono_medium"
                 android:textSize="14sp"/>
 

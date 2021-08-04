@@ -14,6 +14,7 @@
 package com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.bottomNavFragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,22 +43,17 @@ import androidx.fragment.app.Fragment;
 import com.androidstudy.networkmanager.Monitor;
 import com.androidstudy.networkmanager.Tovuti;
 import com.bumptech.glide.Glide;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.ImportDataResult;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.RegisterResult;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.RegisterUser;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.ResponseResult;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.classes.VerifyUserResult;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.BgWorker;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.DBHelper;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.MySharedPreferences;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.SharedPrefsConstants;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.models.Utilities;
-import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.network.NetworkHandler;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.CustomImportProgressDialog;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.CustomSyncProgressDialog;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.ExpenseSummary;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.Localization;
 import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.ManageExpenseTypes;
+import com.freemind_technologies.trackity_apna_hisaab_kitaab_app.views.PrivacyPolicy;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -79,7 +76,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,21 +85,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
     private LinearLayout ll_manage_exp_types, ll_logout, ll_import, ll_sync_db, ll_google_signIn,
-            ll_expense_summary, ll_feedback, ll_change_localization;
+            ll_expense_summary, ll_feedback, ll_change_localization, ll_privacy_policy;
     private TextView tv_user_name, tv_month_name, tv_total_amt_month_name, tv_total_month_amt,
             tv_new_exp_type, tv_new_exp_summary;
     private static final int REQUEST_CODE_GOOGLE_SIGN_IN = 234;
@@ -116,6 +104,7 @@ public class ProfileFragment extends Fragment {
     private CoordinatorLayout coordinatorLayout;
     private MySharedPreferences mySharedPrefs;
     private LineChart total_expenses_chart;
+    private ProgressDialog progressDialog;
     private FirebaseUser firebaseUser;
     private boolean isOnline = false;
     private ImageView im_profile_pic;
@@ -138,6 +127,7 @@ public class ProfileFragment extends Fragment {
         ll_manage_exp_types = view.findViewById(R.id.fp_manage_exp_types);
         coordinatorLayout = view.findViewById(R.id.fp_coordinatorLayout);
         ll_expense_summary = view.findViewById(R.id.fp_expense_summary);
+        ll_privacy_policy = view.findViewById(R.id.fp_privacy_policy);
         tv_new_exp_summary = view.findViewById(R.id.fp_es_first_time);
         ll_google_signIn = view.findViewById(R.id.fp_google_signIn);
         im_month_forward = view.findViewById(R.id.fp_month_forward);
@@ -158,6 +148,11 @@ public class ProfileFragment extends Fragment {
 
         importProgressDialog = new CustomImportProgressDialog(getContext());
         syncProgressDialog = new CustomSyncProgressDialog(getContext());
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage(getResources().getString(R.string.pf_signing_in));
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
 
         Tovuti.from(getContext()).monitor(new Monitor.ConnectivityListener(){
             @Override
@@ -279,6 +274,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        ll_privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(v.getContext(), PrivacyPolicy.class);
+                v.getContext().startActivity(in);
+            }
+        });
+
         ll_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -390,6 +393,7 @@ public class ProfileFragment extends Fragment {
 
     private void signIn() {
 
+        progressDialog.show();
         Intent in = googleSignInClient.getSignInIntent();
         googleSignIn.launch(in);
 
@@ -410,6 +414,7 @@ public class ProfileFragment extends Fragment {
                                     mySharedPrefs.setLoginMethod("Google");
 
                                     setUserDetails(user);
+                                    progressDialog.dismiss();
                                     checkIfUserAlreadyExistsInDB(user);
 
                                     mySharedPrefs.setLoggedIn(true);
@@ -421,6 +426,7 @@ public class ProfileFragment extends Fragment {
                                     ll_google_signIn.setVisibility(View.GONE);
 
                                 } else {
+                                    progressDialog.dismiss();
                                     Toast.makeText(getContext(), "Authentication Failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -430,8 +436,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkIfUserAlreadyExistsInDB(FirebaseUser user) {
-
-//        RequestBody u_email = RequestBody.create(user.getEmail(), MediaType.parse("text/plain"));
 
         try {
 
@@ -465,41 +469,6 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-//        Call<VerifyUserResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().verifyUser(u_email);
-//
-//        call.enqueue(new Callback<VerifyUserResult>() {
-//            @Override
-//            public void onResponse(Call<VerifyUserResult> call, Response<VerifyUserResult> response) {
-//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
-//
-//                boolean exists = response.body().userExists();
-//                final String u_id = response.body().getUser_id();
-//                ResponseResult result = response.body().getResponseResult();
-//
-//                final String responseCode = result.getResponseCode();
-//
-//                if (responseCode.equalsIgnoreCase("200") && exists) {
-//
-//                    Log.d(TAG, "Verification Result :: User_ID -> "+u_id);
-//                    mySharedPrefs.setUserID(u_id);
-//                    // If User logs out and Adds some new expenses and then logs back in again.
-//                    syncUserDataToDB();
-//                    ImportDataFromServerDB();
-//
-//                } else if (responseCode.equalsIgnoreCase("404") && !exists) {
-//                    storeUserInDB(user);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<VerifyUserResult> call, Throwable t) {
-//
-//                Log.d(TAG, "Failed Somehow");
-//
-//            }
-//        });
-
     }
 
     private void calculateMonthlyExpense() {
@@ -517,6 +486,8 @@ public class ProfileFragment extends Fragment {
         String month_expense = res.getString(0);
         if (month_expense == null)
             month_expense = "0";
+
+        res.close();
 
         tv_total_month_amt.setText(month_expense);
 
@@ -555,41 +526,6 @@ public class ProfileFragment extends Fragment {
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
         }
-
-//        RequestBody f_name = RequestBody.create(user_name, MediaType.parse("text/plain"));
-//        RequestBody pass = RequestBody.create(user_pass, MediaType.parse("text/plain"));
-//        RequestBody u_email = RequestBody.create(user_email, MediaType.parse("text/plain"));
-//
-//        Call<RegisterUser> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().registerUser(f_name, u_email, pass);
-//
-//        call.enqueue(new Callback<RegisterUser>() {
-//            @Override
-//            public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
-//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
-//
-//                RegisterResult registerResult = response.body().getResult();
-//                ResponseResult result = response.body().getResponseResult();
-//
-//                final String responseCode = result.getResponseCode();
-//
-//                if (responseCode.equalsIgnoreCase("200")) {
-//
-//                    Log.d(TAG, "Register Result :: User_ID -> "+registerResult.getUser_id());
-//                    mySharedPrefs.setUserID(registerResult.getUser_id());
-//
-//                    syncUserDataToDB();
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RegisterUser> call, Throwable t) {
-//
-//                Log.d(TAG, "Failed Somehow");
-//
-//            }
-//        });
 
     }
 
@@ -712,6 +648,8 @@ public class ProfileFragment extends Fragment {
         if (weeklyExpense == null)
             weeklyExpense = "0";
 
+        res.close();
+
         return weeklyExpense;
 
     }
@@ -733,7 +671,6 @@ public class ProfileFragment extends Fragment {
 
         importProgressDialog.show();
         final String u_id = mySharedPrefs.getUserID();
-//        RequestBody user_id = RequestBody.create(u_id, MediaType.parse("text/plain"));
 
         try {
 
@@ -817,75 +754,6 @@ public class ProfileFragment extends Fragment {
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
         }
-
-//        Call<ImportDataResult> call = NetworkHandler.getNetworkHandler(getContext()).getNetworkApi().importData(user_id);
-//        call.enqueue(new Callback<ImportDataResult>() {
-//            @Override
-//            public void onResponse(Call<ImportDataResult> call, Response<ImportDataResult> response) {
-//                Log.d(TAG, "onResponse: call" + response.isSuccessful());
-//
-//                List<List<String>> expensesList = response.body().getExpenses_list();
-//                List<List<String>> expensesTypesList = response.body().getExpense_Types_list();
-//                ResponseResult result = response.body().getResponseResult();
-//
-//                final String responseCode = result.getResponseCode();
-//
-//                if (responseCode.equalsIgnoreCase("200")) {
-//
-//                    if (expensesList.size() > 0) {
-//
-//                        if (dbHelper.ExpenseTableHasData()) {
-//                            dbHelper.deleteAllRows__ExpenseTable();
-//                        }
-//
-//                        ListIterator<List<String>> iter = expensesList.listIterator();
-//
-//                        while(iter.hasNext()) {
-//                            final List<String> expense = iter.next();
-//                            dbHelper.storeExpense(expense, true);
-//                        }
-//
-//                    } else {
-//                        Log.d(TAG, "Expenses List is Empty");
-//                    }
-//
-//                    if (expensesTypesList.size() > 0) {
-//
-//                        dbHelper.deleteAllRows__ExpenseTypesTable();
-//
-//                        ListIterator<List<String>> iter1 = expensesTypesList.listIterator();
-//
-//                        while(iter1.hasNext()) {
-//                            final List<String> expenseType = iter1.next();
-//                            dbHelper.storeExpenseTypes(expenseType.get(0), expenseType.get(1), expenseType.get(2), true);
-//                        }
-//
-//                    } else {
-//
-//                        Log.d(TAG, "ExpensesTypes List is Empty");
-//                    }
-//
-//                    importProgressDialog.hide();
-//                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "Data Imported Successfully!", R.color.internet_status_color);
-//
-//                    initLineChart();
-//                    calculateMonthlyExpense();
-//                    calculateWeeklyExpenseData();
-//
-//                } else if (responseCode.equalsIgnoreCase("404")) {
-//                    importProgressDialog.hide();
-//                    utilities.showBottomSnackBar(getContext(), coordinatorLayout, "No Data uploaded yet from this Account!", R.color.internet_status_color);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ImportDataResult> call, Throwable t) {
-//
-//                importProgressDialog.hide();
-//                Log.d(TAG, "Failed Somehow");
-//            }
-//        });
 
     }
 
